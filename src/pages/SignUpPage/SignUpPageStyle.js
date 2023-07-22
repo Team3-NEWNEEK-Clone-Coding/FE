@@ -5,16 +5,23 @@ background-color: #E6E4DA;
 margin: auto;
 font-size: 12px;
 
+.EmojiInputDiv{
+  width: 40px;
+  height: 10px;
+  margin-top: 30px;
+}
+
 `;
 
 export const SignUpContainer = styled.div`
 max-width: 400px;
     min-height: 100vh;
     margin: 0 auto;
-    padding: 10rem 0 5rem;
+    padding: 5rem 0 5rem;
     box-sizing: border-box;
     display: block;
     letter-spacing: -.0125rem;
+   
 `;
 
 export const SignUpHeader = styled.div`
@@ -49,10 +56,7 @@ export const SignUpInputContainer = styled.form`
   display: block;
   margin: 0;
     padding: 0;
-
     display: block;
-    margin-inline-start: 2px;
-    margin-inline-end: 2px;
     padding-block-start: 0.35em;
     padding-block-end: 0.625em;
     min-inline-size: min-content;
@@ -62,60 +66,63 @@ export const SignUpInputContainer = styled.form`
   margin: 1rem 0;
     position: relative;
     display: block;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 
-  input {
-    display: block;
-    width: 100%;
-    padding: 10px 40px 11px 1.5rem;
-    border: 1px solid #051619;
-    border-radius: 0;
-    box-sizing: border-box;
-    box-shadow: 0;
-    font: inherit;
-    color: #051619;
-    transition: all .2s;
-    outline: none;
-    box-shadow: none;
-    
+  .InputDiv {
+    height: 260px;
+    margin-bottom: 5vh
   }
 }
 `;
 
+
 export const SignUpTerms = styled.div`
     padding: 0 0 1rem;
-    margin: 0;
+    margin-top: 40px;
+    transform: translateY(-10px);
 
 .checkboxDiv {
   display: block;
     padding: 0.5rem 0;
     position: relative;
+
 }
 
 #check-all {
-  margin-left: 1vh;
-  margin-top: 5px
+  margin-left: 0;
+  margin-top: 7px;
+  transform: translateY(5px);
+  width: 15px;
+  height: 15px;
+
 }
 
-span {
+.InputTitle {
   margin: 0.5vh;
+  font-size: 15px;
+
 }
 
 .inputLink {
   font: 12px;
   text-decoration: underline;
+  font-size: 13px;
+  font-weight: 600;
   color: #051619;
   position: absolute;
   margin-top: 1vh;
-  transform: translateX(320px);
-  
+  margin-left: 50px;
 }
 `;
+
+
 
 export const SignUpButton = styled.div`
 
     padding: 32px 0;
     margin: auto;
-
+  
 .signUp-button {
   width: 100%;
   height: 40px;
@@ -136,4 +143,5 @@ export const SignUpButton = styled.div`
   color: #fff;
 }
 `;
+
 

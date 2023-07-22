@@ -8,6 +8,13 @@ import {
   SignUpTerms,
 } from "./SignUpPageStyle";
 import Button from "../../components/common/button/Button";
+import InputContainer from "../../container/InputContainer";
+import EmojiInput from "../../components/common/input/EmojiInput";
+
+const handleEmojiSelect = (emoji) => {
+  // 이모지 선택 시 처리 로직
+  console.log("선택된 이모지:", emoji);
+};
 
 const SignUpPage = () => {
   return (
@@ -19,44 +26,33 @@ const SignUpPage = () => {
           </a>
         </SignUpHeader>
         <SignUpInputContainer>
-          <div className="textfield">
-            <input type="text" placeholder="이메일" name="email" class="textfield-input" value="" />
-          </div>
-          <div className="textfield">
-            <input type="password" name="password" class="textfield-input" placeholder="비밀번호 (8자 이상)" value="" />
-          </div>
-          <div className="textfield">
-            <input
-              type="password"
-              name="passwordConfirm"
-              class="textfield-input"
-              placeholder="비밀번호 확인 (8자 이상)"
-              value=""
-            />
-          </div>
-          <div className="textfield">
-            <input type="text" name="name" class="textfield-input" placeholder="닉네임" value="" />
+          <div className="InputDiv">
+            {/* InputContainer 컴포넌트를 렌더링 */}
+            <InputContainer />
           </div>
         </SignUpInputContainer>
+        <div className="EmojiInputDiv">
+          <EmojiInput onEmojiSelect={handleEmojiSelect} /> {/* 이모지 입력 컴포넌트를 렌더링 */}
+        </div>
         <SignUpTerms>
           <div className="checkbox">
             <input type="checkbox" id="check-all" name="all" />
-            <span>가입을 동의합니다.</span>
+            <span className="InputTitle">가입을 동의합니다.</span>
           </div>
 
           <div className="checkbox">
             <input type="checkbox" id="check-all" name="all" />
-            <span>클론 코딩 프로젝트에 오신걸 환영합니다.</span>
-          </div>
+            <span className="InputTitle">클론 코딩 프로젝트에 오신걸 환영합니다.</span>
 
-          <a
-            className="inputLink"
-            href="https://newneek.notion.site/1e9ac1561fdb44109e2b154cf3b6a769"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            약관보기
-          </a>
+            <a
+              className="inputLink"
+              href="https://newneek.notion.site/1e9ac1561fdb44109e2b154cf3b6a769"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              약관보기
+            </a>
+          </div>
         </SignUpTerms>
         <SignUpButton>
           <Button size="xl" theme="SignUpBtn">
@@ -67,5 +63,4 @@ const SignUpPage = () => {
     </Container>
   );
 };
-
 export default SignUpPage;
