@@ -1,5 +1,5 @@
-import { BiSearch } from 'react-icons/Bi';
-import { BsPerson } from 'react-icons/Bs';
+import { BiSearch } from 'react-icons/bi';
+import { BsPerson } from 'react-icons/bs';
 
 const Search = () => {
     return <BiSearch />;
