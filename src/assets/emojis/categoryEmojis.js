@@ -1,36 +1,43 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Politics = () => {
-    return <span>⚖️</span>;
-};
+const EmojiStyle = styled.span`
+    display: ${(props) => props.$display};
+    font-size: ${(props) => props.$size};
+    margin: ${(props) => props.$margin};
+`;
 
-const Money = () => {
-    return <span>💰</span>;
-};
-const World = () => {
-    return <span>🌐</span>;
-};
-const Tech = () => {
-    return <span>🤖</span>;
+const Politics = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>⚖️</EmojiStyle>;
 };
 
-const Work = () => {
-    return <span>💪</span>;
+const Money = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>💰</EmojiStyle>;
 };
-const Echo = () => {
-    return <span>🌱</span>;
+const World = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>🌐</EmojiStyle>;
 };
-const Human = () => {
-    return <span>🤝</span>;
+const Tech = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>🤖</EmojiStyle>;
 };
-const Social = () => {
-    return <span>👥</span>;
+
+const Work = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>💪</EmojiStyle>;
 };
-const Culture = () => {
-    return <span>🎞</span>;
+const Echo = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>🌱</EmojiStyle>;
 };
-const Life = () => {
-    return <span>🧘</span>;
+const Human = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>🤝</EmojiStyle>;
+};
+const Social = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>👥</EmojiStyle>;
+};
+const Culture = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>🎞</EmojiStyle>;
+};
+const Life = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>🧘</EmojiStyle>;
 };
 
 const CateEmoji = { Life, Culture, Social, Human, Echo, Work, Tech, World, Money, Politics };
