@@ -14,7 +14,7 @@ const SignUpPage = () => {
     <Container>
       <SignUpContainer>
         <SignUpHeader>
-          <a className="login-logo" href="/main">
+          <a className="login-logo" href="/">
             <img src={`${process.env.PUBLIC_URL}/imgs/new-neek-logo.png`} alt="뉴닉" />
           </a>
         </SignUpHeader>

@@ -15,17 +15,6 @@ max-width: 400px;
     box-sizing: border-box;
     display: block;
     letter-spacing: -.0125rem;
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    img {
-      
-    }
-
-=======
->>>>>>> ec9b3e0 (feat: 회원가입 작업)
-=======
->>>>>>> 2751eaf (feat : 버튼추가, 회원가입 css완료)
 `;
 
 export const SignUpHeader = styled.div`
@@ -34,7 +23,7 @@ width: 400px;
 
 
 a {
- 
+
     color: #ff6b00;
     display: block;
     width: 60%;

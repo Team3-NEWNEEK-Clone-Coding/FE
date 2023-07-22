@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../components/common/button/Button";
-import { BiSearch } from 'react-icons/bi';
-import { BsPerson } from 'react-icons/bs';
+import { BiSearch } from "react-icons/bi";
+import { BsPerson } from "react-icons/bs";
 
 const ButtonContainer = () => {
 
