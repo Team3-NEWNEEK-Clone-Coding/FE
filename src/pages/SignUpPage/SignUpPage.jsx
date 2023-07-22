@@ -7,6 +7,7 @@ import {
   SignUpInputContainer,
   SignUpTerms,
 } from "./SignUpPageStyle";
+import Button from "../../components/common/button/Button";
 
 const SignUpPage = () => {
   return (
@@ -58,7 +59,9 @@ const SignUpPage = () => {
           </a>
         </SignUpTerms>
         <SignUpButton>
-          <button className="signUp-button primary-button">가입하기</button>
+          <Button size="xl" theme="SignUpBtn">
+            회원가입
+          </Button>
         </SignUpButton>
       </SignUpContainer>
     </Container>

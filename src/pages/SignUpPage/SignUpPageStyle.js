@@ -8,15 +8,15 @@ font-size: 12px;
 `;
 
 export const SignUpContainer = styled.div`
-border: 1px solid black;
 max-width: 400px;
     min-height: 100vh;
     margin: 0 auto;
-    padding: 5rem 0 10rem;
+    padding: 10rem 0 5rem;
     box-sizing: border-box;
     display: block;
     letter-spacing: -.0125rem;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     img {
       
@@ -24,15 +24,17 @@ max-width: 400px;
 
 =======
 >>>>>>> ec9b3e0 (feat: 회원가입 작업)
+=======
+>>>>>>> 2751eaf (feat : 버튼추가, 회원가입 css완료)
 `;
 
 export const SignUpHeader = styled.div`
-border: 1px solid black;
 display: block;
+width: 400px;
 
 
 a {
-  border: 1px solid black;
+ 
     color: #ff6b00;
     display: block;
     width: 60%;
@@ -40,12 +42,16 @@ a {
     text-decoration: none;
 }
 
-.img {
+.login-logo {
+ height: 10px;
+
+}
+
+img{
   width: 100%;
   vertical-align: middle;
   overflow-clip-margin: content-box;
     overflow: clip;
-
 }
 
 
@@ -59,12 +65,9 @@ export const SignUpInputContainer = styled.form`
     margin-inline-start: 2px;
     margin-inline-end: 2px;
     padding-block-start: 0.35em;
-    padding-inline-start: 0.75em;
-    padding-inline-end: 0.75em;
     padding-block-end: 0.625em;
     min-inline-size: min-content;
   
-    
 
 .textfield {
   margin: 1rem 0;
