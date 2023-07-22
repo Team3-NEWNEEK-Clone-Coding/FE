@@ -17,10 +17,13 @@ max-width: 400px;
     display: block;
     letter-spacing: -.0125rem;
 
+<<<<<<< HEAD
     img {
       
     }
 
+=======
+>>>>>>> ec9b3e0 (feat: 회원가입 작업)
 `;
 
 export const SignUpHeader = styled.div`
