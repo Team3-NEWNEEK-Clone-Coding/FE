@@ -46,6 +46,10 @@ export const StFooterSitemap = styled.nav`
             justify-content: flex-end;
             margin-bottom: 0.5rem;
             color: #051619;
+
+            strong {
+                font-weight: 700;
+            }
         }
     }
 `;
@@ -54,6 +58,7 @@ export const StFooterSitemap = styled.nav`
 export const StFooterAddressInfo = styled.div`
     width: 100%;
     margin: 2rem 0 0;
+    line-height: 1.8;
 `
 
 export const StFooterCopyright = styled.small`
