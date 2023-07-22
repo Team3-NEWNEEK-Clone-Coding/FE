@@ -17,6 +17,10 @@ max-width: 400px;
     display: block;
     letter-spacing: -.0125rem;
 
+    img {
+      
+    }
+
 `;
 
 export const SignUpHeader = styled.div`
