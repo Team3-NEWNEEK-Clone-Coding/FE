@@ -1,5 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { COLOR } from '../assets/colors';
 import reset from 'styled-reset';
 const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -14,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
+        background-color: ${COLOR.bg};
     }
     button{
         all:unset;
@@ -27,9 +29,13 @@ const GlobalStyle = createGlobalStyle`
         sans-serif;
     }
     .center{
-        max-width: 1280px;
+        max-width: 1360px;
         padding: 0 30px;
         margin: auto;
+        @media screen and (max-width: 1360px) {
+            max-width: 1040px;
+
+        }
     }
     
 `;
