@@ -14,7 +14,7 @@ font-size: 12px;
 `;
 
 export const SignUpContainer = styled.div`
-max-width: 400px;
+    max-width: 400px;
     min-height: 100vh;
     margin: 0 auto;
     padding: 5rem 0 5rem;
@@ -38,7 +38,7 @@ a {
     text-decoration: none;
 }
 
-.login-logo {
+.Sign-logo {
  height: 10px;
 
 }
@@ -115,8 +115,6 @@ export const SignUpTerms = styled.div`
   margin-left: 50px;
 }
 `;
-
-
 
 export const SignUpButton = styled.div`
 

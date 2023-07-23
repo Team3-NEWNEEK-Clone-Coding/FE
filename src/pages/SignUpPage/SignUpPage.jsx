@@ -17,18 +17,49 @@ const handleEmojiSelect = (emoji) => {
 };
 
 const SignUpPage = () => {
+  const fields = [
+    {
+      name: "email",
+      type: "email",
+      placeholder: "이메일",
+      required: true,
+    },
+    {
+      name: "password",
+      type: "password",
+      placeholder: "비밀번호 (8자 이상)",
+      required: true,
+    },
+    {
+      name: "confirmPassword",
+      type: "password",
+      placeholder: "비밀번호 확인(8자 이상)",
+      required: true,
+    },
+    {
+      name: "nickname",
+      type: "text",
+      placeholder: "닉네임",
+      required: true,
+    },
+  ];
+
+  const handleSubmit = (formData) => {
+    // 회원가입 로직
+    console.log(formData);
+  };
+
   return (
     <Container>
       <SignUpContainer>
         <SignUpHeader>
-          <a className="login-logo" href="/">
+          <a className="Sign-logo" href="/">
             <img src={`${process.env.PUBLIC_URL}/imgs/new-neek-logo.png`} alt="뉴닉" />
           </a>
         </SignUpHeader>
         <SignUpInputContainer>
           <div className="InputDiv">
-            {/* InputContainer 컴포넌트를 렌더링 */}
-            <InputContainer />
+            <InputContainer fields={fields} onSubmit={handleSubmit} />
           </div>
         </SignUpInputContainer>
         <div className="EmojiInputDiv">

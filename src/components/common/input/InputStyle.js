@@ -1,21 +1,23 @@
 import styled from 'styled-components';
 
 export const InputWrapper = styled.div`
+font-size: 14px;
 max-width: 400px;
 height: 60px;
 display: block;
   margin: 0;
     padding: 0;
-
-    display: block;
     padding-block-start: 0.35em;
     padding-block-end: 0.625em;
     min-inline-size: min-content;
+    
 
     .textfield {
       margin: 1rem 0;
     position: relative;
     display: block;
+
+    
     
     input {
     display: block;
@@ -31,6 +33,7 @@ display: block;
     transition: all .2s;
     outline: none;
     box-shadow: none;
+    font-size: 14px;
   }
 
   .mainInput {
@@ -39,6 +42,7 @@ display: block;
     border: 1px solid #051619;
     box-shadow: none;
     border-radius: 0;
+    
   }
 
   .SearchInput {
@@ -46,6 +50,7 @@ display: block;
     height: 52px;
     border: 1px solid #051619;
     box-shadow: none;
+    
     border-radius: 0;
   }
 }
