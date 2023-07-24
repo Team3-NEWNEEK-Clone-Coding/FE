@@ -1,14 +1,14 @@
 import { Outlet } from 'react-router-dom';
 import Header from './Header/Header';
 import Footer from './footer/Footer';
-import FooterBanner from './footerBanner/FooterBanner';
+import SubscribeFooterBanner from './subscribeFooterBanner/SubscribeFooterBanner';
 
 const Layout = () => {
     return (
         <>
             <Header />
             <Outlet />
-            <FooterBanner />
+            <SubscribeFooterBanner />
             <Footer />
         </>
     );
