@@ -1,17 +1,32 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { COLOR } from '../../assets/colors';
 import { Link } from 'react-router-dom';
 export const NewsList = styled.ul`
-    /* background-color: ${COLOR.bg}; */
-    border-color: ${COLOR.black};
-    border-style: solid;
-    border-width: 0px 0 0 1px; //border left를 따로 주는거랑 왜 다르게 나올까
+    border-left: 1px solid ${COLOR.black};
     flex-wrap: wrap;
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
+    /* @media screen and (max-width: 1360px) {
+    } */
+    .border-top-style:nth-child(-n + 4) {
+        border-top: 1px solid ${COLOR.black};
+    }
     @media screen and (max-width: 1360px) {
         max-width: 1040px;
+        .border-top-style:nth-child(n + 4) {
+            border-top: none;
+        }
+    }
+    @media screen and (max-width: 900px) {
+        .border-top-style:nth-child(n + 3) {
+            border-top: none;
+        }
+    }
+    @media screen and (max-width: 720px) {
+        .border-top-style:nth-child(n + 2) {
+            border-top: none;
+        }
     }
 `;
 
@@ -21,7 +36,6 @@ export const NewsCardStyle = styled(Link)`
     border-top: none;
     border-left: none;
     position: relative;
-
     &:hover {
         img {
             filter: grayscale(0%);
@@ -30,7 +44,6 @@ export const NewsCardStyle = styled(Link)`
             background-color: #fff;
         }
     }
-
     @media screen and (max-width: 1360px) {
         width: 33.3%;
     }
@@ -59,9 +72,6 @@ export const NewsCardImgWrap = styled.figure`
         object-fit: cover;
         filter: grayscale(100%);
     }
-    /* span {
-        font-size: 3rem;
-    } */
 `;
 
 export const NewsCardBody = styled.div`

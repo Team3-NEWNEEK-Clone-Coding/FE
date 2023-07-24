@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeBannerStyle, BannerImgWrap, BannerTextBox, ArrowRight } from './homeBannerStyle';
+import { HomeBannerStyle, BannerImgWrap, BannerTextBox, ArrowRight } from './HomeBannerStyle';
 
 const HomeBanner = () => {
     return (

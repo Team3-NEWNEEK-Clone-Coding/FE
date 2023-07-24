@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import CateEmoji from '../../assets/emojis/categoryEmojis';
 import { NewsList, NewsCardStyle, NewsCardImgWrap, NewsCardBody } from './NewsStyle';
 
-const NewsCard = ({ newsData }) => {
+const NewsCard = ({ newsData, $borderTop }) => {
     return (
         <NewsList>
             {newsData &&
                 newsData.map((news, idx) => {
                     return news.img ? (
-                        <NewsCardStyle to={'/'} key={`news${idx}`}>
+                        <NewsCardStyle
+                            to={'/'}
+                            key={`news${idx}`}
+                            className={$borderTop ? 'border-top-style' : ''}
+                        >
                             <NewsCardImgWrap>
                                 <img src={news.img} alt="" />
                             </NewsCardImgWrap>
@@ -21,7 +25,11 @@ const NewsCard = ({ newsData }) => {
                             </NewsCardBody>
                         </NewsCardStyle>
                     ) : (
-                        <NewsCardStyle to={'/'} key={`news${idx}`}>
+                        <NewsCardStyle
+                            to={'/'}
+                            key={`news${idx}`}
+                            className={$borderTop ? 'border-top-style' : ''}
+                        >
                             <NewsCardBody>
                                 <CateEmoji.Culture
                                     $size={'3rem'}
