@@ -1,12 +1,13 @@
 import Router from './router/Router'
 import GlobalStyle from './assets/GlobalStyle';
+import { QueryClient, QueryClientProvider } from 'react-query';
 function App() {
     return (
-        <div className="App">
+        <QueryClientProvider client={QueryClient}>
             <GlobalStyle />
             <Router />
-        </div>
-    );
+        </QueryClientProvider>
+    )
 }
 
 export default App;
