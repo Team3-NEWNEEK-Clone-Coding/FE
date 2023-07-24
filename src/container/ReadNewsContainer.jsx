@@ -1,5 +1,5 @@
 import React from 'react';
-import NewsCard from '../components/NewsCard/NewsCard';
+import NewsCard from '../components/newsCard/NewsCard';
 
 const mockDate = [
     {

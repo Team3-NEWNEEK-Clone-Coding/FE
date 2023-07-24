@@ -1,5 +1,5 @@
 import React from 'react';
-import NewsCard from '../components/NewsCard/NewsCard';
+import NewsCard from '../components/newsCard/NewsCard';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { COLOR } from '../assets/colors';
