@@ -1,4 +1,4 @@
-import Router from './router/Router';
+import Router from './router/Router'
 import GlobalStyle from './assets/GlobalStyle';
 function App() {
     return (

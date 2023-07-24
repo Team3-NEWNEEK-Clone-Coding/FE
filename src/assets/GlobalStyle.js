@@ -1,4 +1,3 @@
-import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { COLOR } from '../assets/colors';
 import reset from 'styled-reset';
