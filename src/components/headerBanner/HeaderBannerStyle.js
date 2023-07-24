@@ -6,9 +6,12 @@ export const HeaderBannerStyle = styled.div`
     position: relative;
     border-top: 1px solid ${COLOR.black};
     /* border-bottom: 1px solid ${COLOR.black}; */
+    .text-line {
+        text-decoration: underline;
+    }
     .img-wrap {
         position: absolute;
-        bottom: -9rem;
+        bottom: -6rem;
         left: 50%;
         width: 100%;
         max-width: 530px;
