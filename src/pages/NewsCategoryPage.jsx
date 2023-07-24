@@ -1,17 +1,10 @@
 import React from 'react';
-import NavBar from '../layout/NavBar';
-import HomeBanner from '../components/homeBanner/HomeBanner';
-import HeaderBanner from '../components/headerBanner/HeaderBanner';
-import MainNewsReadContainer from '../container/MainNewsReadContainer';
+import HomeBanner from '../components/HomeBanner/HomeBanner';
+import ReadCategoryNewsContainer from '../container/ReadCategoryNewsContainer';
 const NewsCategoryPage = () => {
     return (
         <>
-            <NavBar />
-            <HeaderBanner />
-            <div className="center">
-                <MainNewsReadContainer />
-            </div>
-            <button>더보기</button>
+            <ReadCategoryNewsContainer />
             <HomeBanner />
         </>
     );
