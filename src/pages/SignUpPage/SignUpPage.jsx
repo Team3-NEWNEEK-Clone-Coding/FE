@@ -27,13 +27,13 @@ const SignUpPage = () => {
     {
       name: "password",
       type: "password",
-      placeholder: "비밀번호 (8자 이상)",
+      placeholder: "비밀번호 (10자 이상)",
       required: true,
     },
     {
       name: "confirmPassword",
       type: "password",
-      placeholder: "비밀번호 확인(8자 이상)",
+      placeholder: "비밀번호 확인(10자 이상)",
       required: true,
     },
     {
