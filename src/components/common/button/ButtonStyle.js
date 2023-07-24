@@ -26,7 +26,7 @@ export const ButtonStyle = styled.button`
 
       case "sm":
         return css`
-          height: 61px;
+          height: 70px;
           width: 218px;
         `;
       case "md":
