@@ -29,12 +29,11 @@ const GlobalStyle = createGlobalStyle`
         sans-serif;
     }
     .center{
-        max-width: 1360px;
-        padding: 0 30px;
+        max-width: 1440px;
+        padding: 0 40px;
         margin: auto;
         @media screen and (max-width: 1360px) {
             max-width: 1040px;
-
         }
     }
     
