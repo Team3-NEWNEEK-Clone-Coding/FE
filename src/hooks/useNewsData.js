@@ -3,17 +3,13 @@ import { useState, useEffect } from 'react';
 
 const useNewsData = (getData) => {
     const [currentPage, setCurrentPage] = useState(1);
-    // const [totalPage, setTotalPage] = useState(10);
+    const [totalPage, setTotalPage] = useState(1);
     const [data, setData] = useState([]);
-    let totalPage = 10;
+    // let totalPage = 10;
     const fetchData = async () => {
         try {
             const newData = await getData({ currentPage });
-            // console.log(newData);
-            // setData((prevData) => [...prevData, ...newData]);
-            // totalPage = newData.totalPage;
-            console.log(newData);
-            // setTotalPage(newData.totalPage);
+            setTotalPage(newData.totalPages);
             setData((prevData) => [...prevData, ...newData.newsList]);
         } catch (error) {
             alert('에러');
@@ -28,7 +24,7 @@ const useNewsData = (getData) => {
     const moreViewOnClick = () => {
         if (currentPage < totalPage) {
             setCurrentPage(currentPage + 1);
-            console.log(currentPage);
+            // console.log(currentPage);
         } else {
             setCurrentPage(totalPage);
         }
