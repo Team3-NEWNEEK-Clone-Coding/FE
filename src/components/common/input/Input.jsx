@@ -1,7 +1,7 @@
 import React from "react";
 import { InputWrapper } from "./InputStyle";
 
-const Input = ({ type, name, value, onChange, required, error, placeholder, maxLength }) => {
+const Input = ({ type, name, value, onChange, required, error, placeholder, maxLength, className }) => {
   const handleChange = (e) => {
     if (maxLength && e.target.value.length > maxLength) {
       // 만약 최대 글자 수를 초과하면 입력을 막습니다.
@@ -20,6 +20,7 @@ const Input = ({ type, name, value, onChange, required, error, placeholder, maxL
           onChange={onChange}
           required={required}
           placeholder={placeholder}
+          className={className}
         />
         {error && <p style={{ color: "red" }}>{error}</p>}
       </div>

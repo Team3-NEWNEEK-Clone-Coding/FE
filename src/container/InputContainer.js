@@ -43,7 +43,6 @@ const InputContainer = ({ fields, onSubmit }) => {
     <form onSubmit={handleSubmit}>
       {fields.map((field) => (
         <Input
-          key={field.name}
           type={field.type}
           name={field.name}
           value={formData[field.name]}
@@ -52,6 +51,7 @@ const InputContainer = ({ fields, onSubmit }) => {
           placeholder={field.placeholder}
           error={error[field.name === 'password' ? 'passwordError' : error[field.name]]}
           maxLength={field.maxLength}
+          className={field.className}
         />
       ))}
     </form>
