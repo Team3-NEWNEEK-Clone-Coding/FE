@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HeaderBannerStyle, IntroContentBox, NewsLetterForm } from './HeaderBannerStyle';
+import Input from '../common/input/Input';
+import CheckBoxInput from '../common/checkBoxInput/CheckBoxInput';
+import Button from '../common/button/Button';
+import useInput from '../../hooks/useInput';
+import useCheckBox from '../../hooks/useCheckBox';
+import { postSub } from '../../api/sub';
+import { useMutation } from 'react-query';
 
-const HeaderBanner = () => {
+const HeaderBanner = ({
+    onSubmitEvent,
+    email,
+    nickname,
+    checkBox,
+    checkBox2,
+    onChangeEmailHandler,
+    onChangeNicknameHandler,
+    onChangeCheckBoxHandler,
+    onChangeCheckBoxHandler2,
+}) => {
+    console.log(nickname);
     return (
         <HeaderBannerStyle>
             <div className="img-wrap">
@@ -23,16 +41,32 @@ const HeaderBanner = () => {
                         <br />
                         월/화/수/목/금 아침마다 세상 돌아가는 소식을 메일로 받아보세요.
                     </p>
-                    <NewsLetterForm action="">
-                        <input type="text" style={{ height: `40px` }} />
-                        <input type="text" style={{ height: `40px` }} />
-                        <input type="checkbox" />
-                        <label htmlFor="">개인정보 수집 이용에 동의합니다</label>
-                        <input type="checkbox" />
-                        <label htmlFor="">개인정보 수집 이용에 동의합니다</label>
+                    <NewsLetterForm action="" onSubmit={onSubmitEvent}>
+                        <Input
+                            type={'text'}
+                            name={'email'}
+                            value={email}
+                            onChange={onChangeEmailHandler}
+                            placeholder={'이메일 주소'}
+                            className="mainInput"
+                        />
+                        <Input
+                            type={'text'}
+                            name={'닉네임'}
+                            value={nickname}
+                            onChange={onChangeNicknameHandler}
+                            placeholder={'닉네임'}
+                            className="mainInput"
+                        />
+                        <CheckBoxInput labelForId={'check1'} onChange={onChangeCheckBoxHandler}>
+                            <span className="text-line">개인정보 수집·이용</span>에 동의합니다
+                        </CheckBoxInput>
+                        <CheckBoxInput labelForId={'check2'} onChange={onChangeCheckBoxHandler2}>
+                            <span className="text-line">광고성 정보 수신</span>에 동의합니다
+                        </CheckBoxInput>
                         <div className="button-wrap">
-                            <button style={{ height: `40px` }}>뉴스레터 무료로 구독하기</button>
-                            <button style={{ height: `40px` }}>앱 다운로드하기</button>
+                            <Button theme={'NewsLetterBtn'}>뉴스레터 무료로 구독하기</Button>
+                            <Button theme={'MainAppDownloadBtn'}>앱 다운로드하기</Button>
                         </div>
                     </NewsLetterForm>
                 </div>
