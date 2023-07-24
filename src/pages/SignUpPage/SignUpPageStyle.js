@@ -63,7 +63,6 @@ export const SignUpInputContainer = styled.form`
   
 
 .textfield {
-  margin: 1rem 0;
     position: relative;
     display: block;
     margin-inline-start: 0px;

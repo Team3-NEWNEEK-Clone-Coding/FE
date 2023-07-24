@@ -55,10 +55,9 @@ export const ButtonStyle = styled.button`
   ${(props) => {
     switch (props.theme) {
       case "moreBtn":
-
         return css`
-          background-color: ${props.isClicked ? '#fff' : '#051619'};
-          color: ${props.isClicked ? '#051619' : '#fff'};
+          background-color: ${props.isHovered ? '#ff6b00' : '#fff'};
+          color: ${props.isClicked ? '#051619' : '#051619'};
         `;
 
       case "MainAppDownloadBtn":
