@@ -1,14 +1,14 @@
 import React from "react";
 import { PostFoot, PostFootReaction, PostShare } from './DetailPageLikeStyle';
 
-const DetailPageLike = () => {
+const DetailPageLike = ( {post} ) => {
     return (
         <PostFoot className="post-foot">
             <PostFootReaction className="post-foot-reaction">
                 <button className="post-foot-reaction-button ">
                     <span role="img" aria-label="">🧡</span>
                     좋았슴 
-                    <b className="post-foot-reaction-button-count">5</b>
+                    <b className="post-foot-reaction-button-count">{post.heart}</b>
                 </button>
             </PostFootReaction>
             <PostShare className="post-share">
