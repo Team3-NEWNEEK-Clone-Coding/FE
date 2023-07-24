@@ -1,13 +1,14 @@
 import React from 'react';
-import NavBar from '../layout/NavBar';
-import HomeBanner from '../components/homeBanner/HomeBanner';
-import HeaderBanner from '../components/headerBanner/HeaderBanner';
-import MainNewsReadContainer from '../container/MainNewsReadContainer';
+import NavBar from '../layout/NavBar/NavBar';
+import HomeBanner from '../components/HomeBanner/HomeBanner';
+import HeaderBanner from '../components/HeaderBanner/HeaderBanner';
+import MainNewsReadContainer from '../container/ReadNewsContainer';
+import styled from 'styled-components';
 const MainPage = () => {
     return (
         <>
-            <NavBar />
             <HeaderBanner />
+            <NavBar categoryIdx={'all'} />
             <div className="center">
                 <MainNewsReadContainer />
             </div>
