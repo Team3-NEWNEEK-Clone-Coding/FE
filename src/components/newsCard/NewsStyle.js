@@ -40,9 +40,8 @@ export const NewsCardStyle = styled(Link)`
         img {
             filter: grayscale(0%);
         }
-        & > div {
-            background-color: #fff;
-        }
+
+        background-color: #fff;
     }
     @media screen and (max-width: 1360px) {
         width: 33.3%;

@@ -9,7 +9,7 @@ const NewsCard = ({ newsData, $borderTop }) => {
                 newsData.map((news, idx) => {
                     return news.img ? (
                         <NewsCardStyle
-                            to={'/'}
+                            to={`/detail/${news.id}`}
                             key={`news${idx}`}
                             className={$borderTop ? 'border-top-style' : ''}
                         >
