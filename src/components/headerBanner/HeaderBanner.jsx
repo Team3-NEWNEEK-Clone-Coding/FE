@@ -8,7 +8,9 @@ const HeaderBanner = () => {
                 <img src={`${process.env.PUBLIC_URL}/imgs/gosum-home.png`} alt="" />
             </div>
             <h1>
-                <div className="intro-inner">우리가 시간이 없지, 세상이 안 궁금하냐!</div>
+                <div className="intro-inner">
+                    우리가 시간이 없지, <span>세상이 안 궁금하냐!</span>
+                </div>
             </h1>
             <IntroContentBox>
                 <div className="intro-content-inner">
@@ -22,14 +24,16 @@ const HeaderBanner = () => {
                         월/화/수/목/금 아침마다 세상 돌아가는 소식을 메일로 받아보세요.
                     </p>
                     <NewsLetterForm action="">
-                        <input type="text" />
-                        <input type="text" />
+                        <input type="text" style={{ height: `40px` }} />
+                        <input type="text" style={{ height: `40px` }} />
                         <input type="checkbox" />
+                        <label htmlFor="">개인정보 수집 이용에 동의합니다</label>
                         <input type="checkbox" />
-                        <dis className="button-wrap">
-                            <button>뉴스레터 무료로 구독하기</button>
-                            <button>앱 다운로드하기</button>
-                        </dis>
+                        <label htmlFor="">개인정보 수집 이용에 동의합니다</label>
+                        <div className="button-wrap">
+                            <button style={{ height: `40px` }}>뉴스레터 무료로 구독하기</button>
+                            <button style={{ height: `40px` }}>앱 다운로드하기</button>
+                        </div>
                     </NewsLetterForm>
                 </div>
             </IntroContentBox>
