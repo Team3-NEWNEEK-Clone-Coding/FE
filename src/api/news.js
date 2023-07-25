@@ -1,10 +1,16 @@
 import axios from 'axios';
 
-export const getAllNews = async ({ currentPage }) => {
+export const getAllNews = async (currentPage) => {
     console.log(currentPage);
     try {
+        const params = {
+            page: currentPage,
+            size: 12,
+            sortBy: 'newsDate',
+            isAsc: 'false',
+        };
         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/news`, {
-            params: { page: currentPage, size: 12, sortBy: 'newsDate', isAsc: 'false' },
+            params,
         });
         return response.data;
     } catch (error) {}
