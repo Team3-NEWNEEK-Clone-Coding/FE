@@ -78,4 +78,5 @@ const HeaderBanner = ({
     </HeaderBannerStyle>
   );
 };
+
 export default HeaderBanner;

@@ -46,7 +46,7 @@ const CreateSubscriberContainer = () => {
       setEmailError("이메일 형식이 아니에요!");
       return;
     }
-    if (nickname === "") {
+    if (nickName === "") {
       setNickNameError("닉네임을 입력해주세요.");
       return;
     }
@@ -76,15 +76,15 @@ const CreateSubscriberContainer = () => {
     <HeaderBanner
       onSubmitEvent={onSubmitSubscribeHandler}
       email={email}
-      nickname={nickName}
+      nickName={nickName}
       checkbox={checkbox}
       checkbox2={checkbox2}
       emailError={emailError}
-      nicknameError={nickNameError}
+      nickNameError={nickNameError}
       checkboxError={checkboxError}
       checkboxError2={checkboxError2}
       onChangeEmailHandler={onChangeEmailHandler}
-      onChangeNicknameHandler={onChangeNickNameHandler}
+      onChangeNickNameHandler={onChangeNickNameHandler}
       onChangeCheckBoxHandler={onChangeCheckBoxHandler}
       onChangeCheckBoxHandler2={onChangeCheckBoxHandler2}
     />
