@@ -79,7 +79,7 @@ const LoginPage = () => {
             </div>
           </LoginInputContainer>
           <div className="forgotPw">
-            <a href="#">비밀번호를 잊으셨나요?</a>
+            <Link to="#">비밀번호를 잊으셨나요?</Link>
           </div>
           <Button size="xl" theme="LoginBtn">
             로그인
