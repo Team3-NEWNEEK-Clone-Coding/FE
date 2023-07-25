@@ -20,7 +20,7 @@ const NavBar = ({ categoryIdx }) => {
                     return (
                         <Link
                             to={`/tag/${cate.tag}`}
-                            key={cate.link}
+                            key={cate.tag}
                             onClick={() => categoryOnClick(idx)}
                         >
                             <li className={activeStyle === idx ? `active` : ''}>

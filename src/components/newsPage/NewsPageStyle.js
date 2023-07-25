@@ -3,6 +3,7 @@ import { COLOR } from '../../assets/colors';
 
 export const PageTitle = styled.h1`
     font-size: 2rem;
+    font-weight: 700;
     margin: 3.5rem 0 2rem;
     span {
         margin-right: 1rem;
