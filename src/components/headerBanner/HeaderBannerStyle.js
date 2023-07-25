@@ -75,6 +75,12 @@ export const NewsLetterForm = styled.form`
     display: flex;
     flex-direction: column;
 
+    .textfield-helper {
+        margin-bottom: 0.25rem;
+        color: #b22222;
+        font-size: 12px;
+    }
+
     .button-wrap {
         margin-top: 32px;
         display: flex;

@@ -25,16 +25,23 @@ const LoginPage = () => {
     {
       name: "password",
       type: "password",
-      placeholder: "비밀번호 (8자 이상)",
+      placeholder: "비밀번호 (6 ~ 15자 이상)",
       required: true,
       autoComplete: "current-password",
     },
   ];
 
-  const loginSubmit = async (formData) => {
+  const loginSubmit = async (e) => {
+    e.preventDefault();
+
+    const userEmail = e.target.elements.email.value;
+    const userPassword = e.target.elements.password.value;
+
+    const formData = { userEmail, userPassword };
+
     try {
       // 로그인 요청 보내기
-      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/login`, formData);
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/login`, formData);
 
       // 로그인 성공한 경우 JWT 토큰을 localStorage에 저장
       if (response.status === 200) {
@@ -44,43 +51,45 @@ const LoginPage = () => {
         navigate.push("/");
       }
     } catch (error) {
-      console.log("로그인 실패!");
+      alert("이메일과 비밀번호를 다시 확인 해주세요.");
     }
   };
 
   return (
     <Container>
-      <LoginContainer>
-        <LoginHeader>
-          <a className="Login-logo" href="/">
-            <img src={`${process.env.PUBLIC_URL}/imgs/new-neek-logo.png`} alt="뉴닉" />
-          </a>
-        </LoginHeader>
-        <LoginSocialDiv>
-          <button className="SocialBtn">
-            <span className="logo">
-              <img src={`${process.env.PUBLIC_URL}/imgs/logo-google.png`} alt="구글" />
-            </span>
-            구글로 시작하기
-          </button>
-        </LoginSocialDiv>
-        <LoginDivider />
-        <LoginInputContainer>
-          <div className="LoginDiv">
-            <InputContainer fields={fields} onSubmit={loginSubmit} />
+      <form action="" onSubmit={loginSubmit}>
+        <LoginContainer>
+          <LoginHeader>
+            <a className="Login-logo" href="/">
+              <img src={`${process.env.PUBLIC_URL}/imgs/new-neek-logo.png`} alt="뉴닉" />
+            </a>
+          </LoginHeader>
+          <LoginSocialDiv>
+            <button className="SocialBtn">
+              <span className="logo">
+                <img src={`${process.env.PUBLIC_URL}/imgs/logo-google.png`} alt="구글" />
+              </span>
+              구글로 시작하기
+            </button>
+          </LoginSocialDiv>
+          <LoginDivider />
+          <LoginInputContainer>
+            <div className="LoginDiv">
+              <InputContainer fields={fields} onSubmit={loginSubmit} />
+            </div>
+          </LoginInputContainer>
+          <div className="forgotPw">
+            <a href="#">비밀번호를 잊으셨나요?</a>
           </div>
-        </LoginInputContainer>
-        <div className="forgotPw">
-          <a href="#">비밀번호를 잊으셨나요?</a>
-        </div>
-        <Button size="xl" theme="LoginBtn" onClick={loginSubmit}>
-          로그인
-        </Button>
-        <div className="SignBtn">
-          <Link to="/signup">회원가입 하기</Link>
-        </div>
-        <LoginContainer />
-      </LoginContainer>
+          <Button size="xl" theme="LoginBtn">
+            로그인
+          </Button>
+          <div className="SignBtn">
+            <Link to="/signup">회원가입 하기</Link>
+          </div>
+          <LoginContainer />
+        </LoginContainer>
+      </form>
     </Container>
   );
 };
