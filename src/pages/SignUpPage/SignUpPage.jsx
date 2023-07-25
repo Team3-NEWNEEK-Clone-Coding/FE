@@ -90,33 +90,6 @@ const SignUpPage = () => {
     const formData = { email, nickname, password, confirmPassword };
 
     try {
-      // if (!response || !response.data) {
-      //   console.error("Response or response data is undefined");
-      //   return;
-      // }
-      // if (!isEmailValid(email)) {
-      //   alert("유효하지 않은 이메일 형식입니다.");
-      //   return;
-      // }
-
-      // if (!isNicknameValid(nickname)) {
-      //   alert("닉네임은 5자 이상 12자 이하로 입력해주세요.");
-      //   return;
-      // }
-
-      // if (!isPasswordValid(password)) {
-      //   alert("비밀번호는 영문 소문자와 숫자를 포함한 6~15자리로 입력해주세요.");
-      //   return;
-      // }
-
-      // if (password !== confirmPassword) {
-      //   alert("비밀번호와 확인 비밀번호가 일치하지 않습니다.");
-      //   return;
-      // }
-
-      // if (await isEmailDuplicate(email)) {
-      //   alert("이미 가입된 이메일입니다.");
-      //   return;
       // }
       const formData = {
         userEmail: email,
