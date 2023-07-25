@@ -4,7 +4,7 @@ import DetailPage from '../pages/detail/DetailPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import MainPage from '../pages/MainPage';
-import SearchPage from '../pages/SearchPage';
+import SearchPage from '../pages/searchPage/SearchPage';
 import Layout from '../layout/Layout';
 import NewsCategoryPage from '../pages/NewsCategoryPage';
 import SearchResultPage from '../pages/SearchResultPage';
