@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ButtonStyle } from "./ButtonStyle";
 
-const Button = ({ theme, size, onClickEvent, children }) => {
+const Button = ({ theme, size, onClickEvent, children, type }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -24,6 +24,7 @@ const Button = ({ theme, size, onClickEvent, children }) => {
       onClick={onClickEvent ? onClickEvent : handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      type={type}
     >
       {children}
     </ButtonStyle>

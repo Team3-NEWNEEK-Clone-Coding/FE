@@ -2,44 +2,44 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const secretKey = process.env.JWT_SECRET || 'jwt.secret.key';
+const secretKey = process.env.JWT_SECRET;
 
 router.use(express.json());
 
 const users = [
   {
-    email: 'user1@example.com',
+    userEmail: 'user1@example.com',
     passwordHash: '$2b$10$U0gjWJISlWHPqYEkQnURQ.LRJQJkgexBWHL.vrnxHNGJq7gFRbmbu',
   },
   {
-    email: 'user2@example.com',
+    userEmail: 'user2@example.com',
     passwordHash: '$2b$10$SqgQUBVoy1oQwWRXltUe0u4mMl96roGRLvjOCVOIvzEcmmdXjHE2i',
   },
 ];
 
-const hashPassword = async (password) => {
+const hashPassword = async (userPassword) => {
   const saltRounds = 10;
-  return bcrypt.hash(password, saltRounds);
+  return bcrypt.hash(userPassword, saltRounds);
 };
 
-const checkCredentials = async (email, password) => {
-  const user = users.find((user) => user.email === email);
+const checkCredentials = async (userEmail, userPassword) => {
+  const user = users.find((user) => user.userEmail === userEmail);
   if (!user) {
     return false;
   }
-  return await bcrypt.compare(password, user.passwordHash);
+  return await bcrypt.compare(userPassword, user.passwordHash);
 };
 
-const generateToken = (email) => {
-  return jwt.sign({ email }, secretKey, { expiresIn: '1h' });
+const generateToken = (userEmail) => {
+  return jwt.sign({ userEmail }, secretKey, { expiresIn: '1h' });
 };
 
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { userEmail, userPassword } = req.body;
 
-  const isValidCredentials = await checkCredentials(email, password);
+  const isValidCredentials = await checkCredentials(userEmail, userPassword);
   if (isValidCredentials) {
-    const token = generateToken(email);
+    const token = generateToken(userEmail);
     res.json({ token });
   } else {
     res.status(401).json({ error: 'Invalid credentials' });
@@ -48,16 +48,16 @@ router.post('/login', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
   try {
-    const { email, nickname, password } = req.body;
+    const { userEmail, nickname, userPassword } = req.body;
 
-    if (users.some((user) => user.email === email)) {
+    if (users.some((user) => user.userEmail === userEmail)) {
       return res.status(400).json({ error: '이미 가입된 이메일입니다.' });
     }
 
-    const passwordHash = await hashPassword(password);
-    users.push({ email, passwordHash });
+    const passwordHash = await hashPassword(userPassword);
+    users.push({ userEmail, passwordHash });
 
-    const token = generateToken(email);
+    const token = generateToken(userEmail);
     res.json({ token });
   } catch (error) {
     console.log(error);
@@ -66,13 +66,13 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/check-email', (req, res) => {
-  const { email } = req.body;
+  const { userEmail } = req.body;
 
-  if (!email) {
+  if (!userEmail) {
     return res.status(400).json({ error: 'Email is required' });
   }
 
-  const isDuplicate = users.some((user) => user.email === email);
+  const isDuplicate = users.some((user) => user.userEmail === userEmail);
   res.json({ isDuplicate });
 });
 
