@@ -82,12 +82,12 @@ const SignUpPage = () => {
       }
 
       if (!isNicknameValid(nickname)) {
-        alert("닉네임은 3자 이상 10자 이하로 입력해주세요.");
+        alert("닉네임은 5자 이상 12자 이하로 입력해주세요.");
         return;
       }
 
       if (!isPasswordValid(password)) {
-        alert("비밀번호는 영문 소문자와 숫자를 포함한 6~15자리로 입력해주세요.");
+        alert("비밀번호는 영문 소문자와 숫자를 포함한 10~15자리로 입력해주세요.");
         return;
       }
 
