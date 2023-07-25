@@ -1,40 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import NewsCard from '../components/newsCard/NewsCard';
 import Button from '../components/common/button/Button';
 import { ButtonBox } from '../components/newsPage/NewsPageStyle';
 import axios from 'axios';
 import { getAllNews } from '../api/news';
-import { useQuery, useInfiniteQuery } from 'react-query';
-import useNewsData from '../hooks/useNewsData';
+import { useQuery, useQueryClient } from 'react-query';
+import useLoadMore from '../hooks/useLoadMore';
 
 const MainNewsReadContainer = () => {
-    // const { data, moreViewOnClick, currentPage, totalPage } = useNewsData(getAllNews);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [newsData, setNewsData] = useState(null);
-    const [totalPage, setTotalPage] = useState(1);
-    const [isFetching, setIsFetching] = useState(false);
+    const {
+        data: newsData,
+        currentPage,
+        totalPage,
+        isLoading,
+        isError,
+        handleLoadMore,
+        isFetching,
+    } = useLoadMore(getAllNews);
 
-    const { isLoading, isError, refetch } = useQuery(
-        ['items', currentPage],
-        () => getAllNews(currentPage),
-        {
-            onSuccess: (response) => {
-                setNewsData((prevData) =>
-                    prevData ? [...prevData, ...response.newsList] : response.newsList
-                );
-                setTotalPage(response.totalPages);
-                setIsFetching(false);
-            },
-        }
-    );
-
-    const handleLoadMore = () => {
-        setCurrentPage((prevPage) => prevPage + 1);
-    };
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching data</div>;
 
-    console.log(newsData);
+    // console.log(newsData);
 
     return (
         <>
