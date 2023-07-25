@@ -7,6 +7,7 @@ import Button from '../components/common/button/Button';
 import { searchNews } from '../api/news';
 import { PageTitle, ButtonBox, SearchContentWrap } from '../components/newsPage/NewsPageStyle';
 import { useQuery } from 'react-query';
+import useFetchNews from '../hooks/useFetchNews';
 
 const mockDate = [
     {
@@ -49,40 +50,51 @@ const mockDate = [
 
 //TODO : 카테고리 페이지 작업중이었음
 const CategoryReadContainer = () => {
+    // const { keyword } = useParams();
+    // const nav = useNavigate();
+
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [newsData, setNewsData] = useState(null);
+    // const [totalPage, setTotalPage] = useState(1);
+    // const [isFetching, setIsFetching] = useState(false);
+
+    // const { isLoading, isError, refetch } = useQuery(
+    //     ['searchNews', currentPage],
+    //     () => searchNews({ currentPage, keyword }),
+    //     {
+    //         onSuccess: (response) => {
+    //             setCurrentPage(1);
+    //             setNewsData([]);
+    //             setNewsData((prevData) =>
+    //                 prevData ? [...prevData, ...response.newsList] : response.newsList
+    //             );
+    //             setTotalPage(response.totalPages);
+    //             setIsFetching(false);
+    //         },
+    //     }
+    // );
+
+    // useEffect(() => {
+    //     refetch();
+    // }, [keyword]);
+
+    // Search
     const { keyword } = useParams();
-    const nav = useNavigate();
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [newsData, setNewsData] = useState(null);
-    const [totalPage, setTotalPage] = useState(1);
-    const [isFetching, setIsFetching] = useState(false);
-
-    const { isLoading, isError, refetch } = useQuery(
-        ['searchNews', currentPage],
-        () => searchNews({ currentPage, keyword }),
-        {
-            onSuccess: (response) => {
-                setCurrentPage(1);
-                setNewsData([]);
-                setNewsData((prevData) =>
-                    prevData ? [...prevData, ...response.newsList] : response.newsList
-                );
-                setTotalPage(response.totalPages);
-                setIsFetching(false);
-            },
-        }
+    const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage } = useFetchNews(
+        'searchNews',
+        searchNews,
+        keyword
     );
-
-    useEffect(() => {
-        refetch();
-    }, [keyword]);
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching data</div>;
 
-    const handleLoadMore = () => {
-        setCurrentPage((prevPage) => prevPage + 1);
-    };
+    // if (isLoading) return <div>Loading...</div>;
+    // if (isError) return <div>Error fetching data</div>;
+
+    // const handleLoadMore = () => {
+    //     setCurrentPage((prevPage) => prevPage + 1);
+    // };
 
     console.log(newsData);
 
@@ -99,12 +111,7 @@ const CategoryReadContainer = () => {
                         <NewsCard newsData={newsData} $borderTop />
                         {currentPage !== totalPage && (
                             <ButtonBox>
-                                <Button
-                                    size="md"
-                                    theme="moreBtn"
-                                    onClickEvent={handleLoadMore}
-                                    disabled={isFetching}
-                                >
+                                <Button size="md" theme="moreBtn" onClickEvent={handleLoadMore}>
                                     더보기
                                 </Button>
                             </ButtonBox>

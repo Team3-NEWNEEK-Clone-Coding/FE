@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import Button from '../components/common/button/Button';
 import { PageTitle, ButtonBox } from '../components/newsPage/NewsPageStyle';
 import { useQuery, useQueryClient } from 'react-query';
-
+import useFetchNews from '../hooks/useFetchNews';
 // import useNewsData from '../hooks/useNewsData';
 import { getCategoryNews } from '../api/news';
 const mockDate = [
@@ -45,37 +45,48 @@ const CategoryReadContainer = () => {
     const cateEmojiname = cate.emoji;
     const Emoji = CateEmoji[cateEmojiname];
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [newsData, setNewsData] = useState(null);
-    const [totalPage, setTotalPage] = useState(1);
-    const [isFetching, setIsFetching] = useState(false);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [newsData, setNewsData] = useState(null);
+    // const [totalPage, setTotalPage] = useState(1);
+    // const [isFetching, setIsFetching] = useState(false);
 
-    const { isLoading, isError, refetch } = useQuery(
-        ['cateNews', currentPage],
-        () => getCategoryNews({ currentPage, category }),
-        {
-            onSuccess: (response) => {
-                setCurrentPage(1);
-                setNewsData([]);
-                setNewsData((prevData) =>
-                    prevData ? [...prevData, ...response.newsList] : response.newsList
-                );
-                setTotalPage(response.totalPages);
-                setIsFetching(false);
-            },
-        }
+    // const { isLoading, isError, refetch } = useQuery(
+    //     ['cateNews', currentPage],
+    //     () => getCategoryNews({ currentPage, category }),
+    //     {
+    //         onSuccess: (response) => {
+    //             setNewsData((prevData) =>
+    //                 prevData ? [...prevData, ...response.newsList] : response.newsList
+    //             );
+    //             setTotalPage(response.totalPages);
+    //             setIsFetching(false);
+    //         },
+    //     }
+    // );
+
+    // useEffect(() => {
+    //     setCurrentPage(1);
+    //     setNewsData([]);
+    //     refetch();
+    // }, [category]);
+
+    // Category
+    // const { category } = useParams();
+    const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage } = useFetchNews(
+        'cateNews',
+        getCategoryNews,
+        category
     );
-
-    useEffect(() => {
-        refetch();
-    }, [category]);
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching data</div>;
 
-    const handleLoadMore = () => {
-        setCurrentPage((prevPage) => prevPage + 1);
-    };
+    // if (isLoading) return <div>Loading...</div>;
+    // if (isError) return <div>Error fetching data</div>;
+
+    // const handleLoadMore = () => {
+    //     setCurrentPage((prevPage) => prevPage + 1);
+    // };
 
     return (
         <>
@@ -88,12 +99,7 @@ const CategoryReadContainer = () => {
                 <NewsCard newsData={newsData} $borderTop />
                 {currentPage !== totalPage && (
                     <ButtonBox>
-                        <Button
-                            size="md"
-                            theme="moreBtn"
-                            onClickEvent={handleLoadMore}
-                            disabled={isFetching}
-                        >
+                        <Button size="md" theme="moreBtn" onClickEvent={handleLoadMore}>
                             더보기
                         </Button>
                     </ButtonBox>
