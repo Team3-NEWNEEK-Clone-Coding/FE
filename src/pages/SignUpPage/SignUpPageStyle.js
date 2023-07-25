@@ -11,6 +11,12 @@ font-size: 12px;
   margin-top: 30px;
 }
 
+.abc {
+  width: 500px;
+  height: 600px;
+  background-color: black;
+}
+
 `;
 
 export const SignUpContainer = styled.div`
