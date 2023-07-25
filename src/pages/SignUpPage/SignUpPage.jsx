@@ -11,12 +11,6 @@ import Button from "../../components/common/button/Button";
 import InputContainer from "../../container/InputContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import EmojiPicker from "./Emojipicker";
-
-// const handleEmojiSelect = (emoji) => {
-//   // 이모지 선택 시 처리 로직
-//   console.log("선택된 이모지:", emoji);
-// };
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
