@@ -46,10 +46,12 @@ export const InputWrapper = styled.div`
         .SearchInput {
             width: 449px;
             height: 52px;
-            border: 1px solid #051619;
-            box-shadow: none;
             padding-left: 54px;
+            padding-top: 12px;
+            border: 1px solid #051619;
             border-radius: 0;
+            box-shadow: none;
+            font-size: 1.1rem;
         }
     }
 `;

@@ -25,7 +25,7 @@ export const BannerImgWrap = styled.figure`
         object-fit: cover;
         &.hover-img {
             position: absolute;
-            bottom: 1px;
+            bottom: 0;
             right: 0;
             opacity: 0;
             transition: all 0.3s ease;

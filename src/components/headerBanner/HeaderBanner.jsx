@@ -19,7 +19,6 @@ const HeaderBanner = ({
     onChangeCheckBoxHandler,
     onChangeCheckBoxHandler2,
 }) => {
-    
     return (
         <HeaderBannerStyle>
             <div className="img-wrap">
@@ -59,17 +58,33 @@ const HeaderBanner = ({
                             placeholder={'닉네임'}
                             className="mainInput"
                         />
-                        {nickNameError && <small className="textfield-helper">{nickNameError}</small>}
-                        <CheckBoxInput labelForId={'check1'} checked={checkbox} onChange={onChangeCheckBoxHandler}>
+                        {nickNameError && (
+                            <small className="textfield-helper">{nickNameError}</small>
+                        )}
+                        <CheckBoxInput
+                            labelForId={'check1'}
+                            checked={checkbox}
+                            onChange={onChangeCheckBoxHandler}
+                        >
                             <span className="text-line">개인정보 수집·이용</span>에 동의합니다
                         </CheckBoxInput>
-                        {checkboxError && <small className="textfield-helper">{checkboxError}</small>}
-                        <CheckBoxInput labelForId={'check2'} checked={checkbox2} onChange={onChangeCheckBoxHandler2}>
+                        {checkboxError && (
+                            <small className="textfield-helper">{checkboxError}</small>
+                        )}
+                        <CheckBoxInput
+                            labelForId={'check2'}
+                            checked={checkbox2}
+                            onChange={onChangeCheckBoxHandler2}
+                        >
                             <span className="text-line">광고성 정보 수신</span>에 동의합니다
                         </CheckBoxInput>
-                        {checkboxError2 && <small className="textfield-helper">{checkboxError2}</small>}
+                        {checkboxError2 && (
+                            <small className="textfield-helper">{checkboxError2}</small>
+                        )}
                         <div className="button-wrap">
-                            <Button theme={'NewsLetterBtn'} type="submit">뉴스레터 무료로 구독하기</Button>
+                            <Button theme={'NewsLetterBtn'} type="submit">
+                                뉴스레터 무료로 구독하기
+                            </Button>
                             <Button theme={'MainAppDownloadBtn'}>앱 다운로드하기</Button>
                         </div>
                     </NewsLetterForm>

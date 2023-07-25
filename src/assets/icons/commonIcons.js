@@ -1,5 +1,5 @@
 import { BiSearch } from 'react-icons/bi';
-import { BsPerson } from 'react-icons/bs';
+import { BsPerson, BsArrowLeft } from 'react-icons/bs';
 
 const Search = () => {
     return <BiSearch />;
@@ -7,7 +7,10 @@ const Search = () => {
 const User = () => {
     return <BsPerson />;
 };
+const ArrowLeft = () => {
+    return <BsArrowLeft />;
+};
 
-const Icon = { Search, User };
+const Icon = { Search, User, ArrowLeft };
 
 export default Icon;
