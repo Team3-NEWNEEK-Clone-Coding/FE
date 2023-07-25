@@ -6,6 +6,7 @@ import HomeBanner from '../../components/homeBanner/HomeBanner';
 import { useParams } from 'react-router';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getNewsDetail, postUpdateLike } from '../../api/newsDetail';
+import LoadingPage from '../../components/loadingPage/LoadingPage';
 
 const DetailPage = () => {
     const { id } = useParams();
@@ -27,7 +28,7 @@ const DetailPage = () => {
     }
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        <LoadingPage />
     }
 
     if (isError) {
