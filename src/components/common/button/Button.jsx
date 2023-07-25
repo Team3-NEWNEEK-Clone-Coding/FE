@@ -21,8 +21,6 @@ const Button = ({ theme, size, onClickEvent, children }) => {
     <ButtonStyle
       size={size}
       theme={theme}
-      isClicked={isClicked}
-      isHovered={isHovered}
       onClick={onClickEvent ? onClickEvent : handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
