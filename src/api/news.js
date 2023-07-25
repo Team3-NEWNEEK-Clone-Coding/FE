@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const getAllNews = async (currentPage) => {
-    // console.log(currentPage);
     try {
         const params = {
             page: currentPage,
@@ -13,11 +12,10 @@ export const getAllNews = async (currentPage) => {
             params,
         });
         return response.data;
-    } catch (error) { }
+    } catch (error) {}
 };
 
 export const getCategoryNews = async ({ currentPage, dependency }) => {
-    console.log(currentPage, dependency);
     try {
         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/news/category`, {
             params: {
@@ -35,8 +33,6 @@ export const getCategoryNews = async ({ currentPage, dependency }) => {
 };
 
 export const searchNews = async ({ currentPage, dependency }) => {
-    console.log('news');
-    console.log(dependency);
     try {
         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/news/search`, {
             params: {
@@ -48,5 +44,5 @@ export const searchNews = async ({ currentPage, dependency }) => {
             },
         });
         return response.data;
-    } catch (error) { }
+    } catch (error) {}
 };
