@@ -1,16 +1,16 @@
-import React from 'react';
-import { PostHead, PostContainer, PostHashtag } from './DetailPageStyle';
-import DetailPageLike from '../../components/detailPageLike/DetailPageLike';
-import DetailPageSubscribe from '../../components/detailPageSubscribe/DetailPageSubscribe';
-import HomeBanner from '../../components/homeBanner/HomeBanner';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getNewsDetail, postUpdateLike } from '../../api/newsDetail';
+import { PostHead, ProgressBar, PostContainer, PostHashtag } from './DetailPageStyle';
+import LoadingPage from '../../components/loadingPage/LoadingPage';
+import DetailPageLike from '../../components/detailPageLike/DetailPageLike';
+import DetailPageSubscribe from '../../components/detailPageSubscribe/DetailPageSubscribe';
+import HomeBanner from '../../components/homeBanner/HomeBanner';
 
 const DetailPage = () => {
     const { id } = useParams();
     const { data: post, isLoading, isError } = useQuery(['post', id], () => getNewsDetail(id));
-    console.log(post);
 
     const queryClient = useQueryClient();
     const mutation = useMutation(postUpdateLike, {
@@ -21,13 +21,35 @@ const DetailPage = () => {
             }));
         },
     });
-
     const likeButtonHandler = () => {
         mutation.mutate(id);
     }
 
+    const [scrollPercentage, setScrollPercentage] = useState(0);
+    const [isScrolling, setIsScrolling] = useState(false);
+    useEffect(() => {
+        const scrollListener = () => {
+            const element = document.documentElement;
+            const totalHeight = element.scrollHeight - element.clientHeight;
+            const scrollPosition = window.scrollY;
+            const percentageScrolled = (scrollPosition / totalHeight) * 100;
+
+            setScrollPercentage(percentageScrolled);
+
+            if (window.scrollY > 0) {
+                setIsScrolling(true);
+            } else {
+                setIsScrolling(false);
+            }
+        };
+
+        window.addEventListener('scroll', scrollListener);
+
+        return () => window.removeEventListener('scroll', scrollListener);
+    }, []);
+
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <LoadingPage />;
     }
 
     if (isError) {
@@ -38,11 +60,16 @@ const DetailPage = () => {
         <section className="post is-sticky">
             <div className="post-scrollwrap">
                 <PostHead className="post-head">
+                    {isScrolling && (
+                        <ProgressBar>
+                            <div className="post-head-progress" role="progressbar" aria-valuenow={scrollPercentage} style={{ width: `${scrollPercentage}%` }}></div>
+                            <span className='progress-title'>{post.title}</span>
+                        </ProgressBar>
+                    )}
                     <a className="post-head-runninghead" href="/tag/domestic-issue">{post.category}</a>
                     <h2 className="post-head-headline">{post.title}</h2>
                     <time className="post-head-date">{post.date}</time>
                     <i className="icon-bullet"></i>
-                    <div className="post-head-progress" role="progressbar" aria-valuenow="" style={{ width: '33.2779%' }}></div>
                 </PostHead>
                 <PostContainer className="post-container">
                     <div className="post-featured">
