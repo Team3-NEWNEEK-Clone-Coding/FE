@@ -58,6 +58,9 @@ export const ButtonStyle = styled.button`
         return css`
           background-color: ${props.isHovered ? '#ff6b00' : '#fff'};
           color: ${props.isClicked ? '#051619' : '#051619'};
+          &:hover{
+          background-color: #ff6b00;
+        }
         `;
 
       case "MainAppDownloadBtn":
@@ -71,6 +74,7 @@ export const ButtonStyle = styled.button`
         return css`
         background-color: ${props.isHovered ? '#051619' : '#fff'};
         color: ${props.isHovered ? '#fff' : '#051619'};
+
 `;
 
       case "SignUpBtn":
