@@ -21,7 +21,7 @@ const InputContainer = ({ fields, onSubmit }) => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -40,9 +40,10 @@ const InputContainer = ({ fields, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {fields.map((field) => (
+    <div>
+      {fields.map((field, index) => (
         <Input
+          key={`${field.name}-${index}`}
           type={field.type}
           name={field.name}
           value={formData[field.name]}
@@ -54,7 +55,10 @@ const InputContainer = ({ fields, onSubmit }) => {
           className={field.className}
         />
       ))}
-    </form>
+      <button type="submit" onClick={handleFormSubmit}>
+        Submit
+      </button>
+    </div>
   );
 };
 

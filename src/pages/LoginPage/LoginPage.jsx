@@ -1,5 +1,7 @@
 import React from "react";
 import InputContainer from "../../container/InputContainer";
+import { useNavigate, Link } from "react-router-dom";
+
 import {
   Container,
   LoginContainer,
@@ -9,8 +11,10 @@ import {
   LoginSocialDiv,
 } from "./LoginPageStyle";
 import Button from "../../components/common/button/Button";
+import axios from "axios";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const fields = [
     {
       name: "email",
@@ -23,12 +27,25 @@ const LoginPage = () => {
       type: "password",
       placeholder: "비밀번호 (8자 이상)",
       required: true,
+      autoComplete: "current-password",
     },
   ];
 
-  const loginSubmit = (formData) => {
-    // 회원가입 로직
-    console.log(formData);
+  const loginSubmit = async (formData) => {
+    try {
+      // 로그인 요청 보내기
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/login`, formData);
+
+      // 로그인 성공한 경우 JWT 토큰을 localStorage에 저장
+      if (response.status === 200) {
+        const token = response.data.token; // 서버에서 토큰을 어떤 필드로 보내는지에 따라 수정해야 할 수도 있습니다.
+        localStorage.setItem("accessToken", token);
+        console.log("로그인 성공!");
+        navigate.push("/");
+      }
+    } catch (error) {
+      console.log("로그인 실패!");
+    }
   };
 
   return (
@@ -56,11 +73,11 @@ const LoginPage = () => {
         <div className="forgotPw">
           <a href="#">비밀번호를 잊으셨나요?</a>
         </div>
-        <Button size="xl" theme="LoginBtn" onClick={() => console.log("로그인 버튼 클릭")}>
+        <Button size="xl" theme="LoginBtn" onClick={loginSubmit}>
           로그인
         </Button>
         <div className="SignBtn">
-          <a href="/signup">회원가입 하기</a>
+          <Link to="/signup">회원가입 하기</Link>
         </div>
         <LoginContainer />
       </LoginContainer>
