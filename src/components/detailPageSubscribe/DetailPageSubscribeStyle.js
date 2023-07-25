@@ -50,6 +50,11 @@ export const PostSubscribe = styled.form`
             }
         }
 
+        .textfield-helper {
+            margin-top: 0.25rem;
+            color: #b22222;
+        }
+
         button {
             display: block;
             width: 34.167%;
