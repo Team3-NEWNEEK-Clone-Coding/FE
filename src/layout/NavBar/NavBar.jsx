@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 const categorys = [
     { link: 'politics', tag: '정치', emoji: 'Politics' },
     { link: 'money', tag: '경제', emoji: 'Money' },
-    { link: 'world', tag: '세계', emoji: 'World' },
-    { link: 'tech', tag: '테크', emoji: 'Tech' },
-    { link: 'work', tag: '노동', emoji: 'Work' },
-    { link: 'echo', tag: '환경', emoji: 'Echo' },
-    { link: 'human', tag: '인권', emoji: 'Human' },
+    { link: 'world', tag: '국제', emoji: 'World' },
+    { link: 'tech', tag: '증권', emoji: 'Tech' },
+    { link: 'work', tag: '산업', emoji: 'Work' },
+    { link: 'echo', tag: '부동산', emoji: 'Echo' },
+    { link: 'human', tag: '오피니언', emoji: 'Human' },
     { link: 'social', tag: '사회', emoji: 'Social' },
     { link: 'culture', tag: '문화', emoji: 'Culture' },
-    { link: 'life', tag: '라이프', emoji: 'Life' },
+    { link: 'life', tag: '연예', emoji: 'Life' },
 ];
 
 const NavBar = ({ categoryIdx }) => {
@@ -31,7 +31,7 @@ const NavBar = ({ categoryIdx }) => {
                     const Emoji = CateEmoji[cate.emoji];
                     return (
                         <Link
-                            to={`/tag/${cate.link}`}
+                            to={`/tag/${cate.tag}`}
                             key={cate.link}
                             onClick={() => categoryOnClick(idx)}
                         >
