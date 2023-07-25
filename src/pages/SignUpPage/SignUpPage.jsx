@@ -185,6 +185,9 @@ const SignUpPage = () => {
             <Button size="xl" theme="SignUpBtn" type="submit">
               회원가입
             </Button>
+            <Button size="md" theme="moreBtn" type="submit">
+              더보기
+            </Button>
           </SignUpButton>
         </SignUpContainer>
       </form>
