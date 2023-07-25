@@ -13,7 +13,7 @@ export const getAllNews = async (currentPage) => {
             params,
         });
         return response.data;
-    } catch (error) {}
+    } catch (error) { }
 };
 
 export const getCategoryNews = async ({ currentPage, category }) => {
@@ -51,5 +51,5 @@ export const searchNews = async ({ currentPage, keyword }) => {
             }
         );
         return response.data;
-    } catch (error) {}
+    } catch (error) { }
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Input from '../components/common/input/Input';
 
-const InputContainer = ({ fields, onSubmit }) => {
+const InputContainer = ({ fields, onChange, onSubmit }) => {
   const initialFormData = fields.reduce((obj, field) => ({ ...obj, [field.name]: '' }), {});
   const [formData, setFormData] = useState(initialFormData);
   const [error, setError] = useState({});
@@ -21,7 +21,7 @@ const InputContainer = ({ fields, onSubmit }) => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -35,6 +35,7 @@ const InputContainer = ({ fields, onSubmit }) => {
       );
       return;
     }
+    console.log(formData);
 
     onSubmit(formData);
   };
@@ -55,9 +56,6 @@ const InputContainer = ({ fields, onSubmit }) => {
           className={field.className}
         />
       ))}
-      <button type="submit" onClick={handleFormSubmit}>
-        Submit
-      </button>
     </div>
   );
 };
