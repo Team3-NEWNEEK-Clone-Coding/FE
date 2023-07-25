@@ -7,15 +7,15 @@ import Button from '../common/button/Button';
 const HeaderBanner = ({
     onSubmitEvent,
     email,
-    nickname,
+    nickName,
     checkbox,
     checkbox2,
     emailError,
-    nicknameError,
+    nickNameError,
     checkboxError,
     checkboxError2,
     onChangeEmailHandler,
-    onChangeNicknameHandler,
+    onChangeNickNameHandler,
     onChangeCheckBoxHandler,
     onChangeCheckBoxHandler2,
 }) => {
@@ -53,13 +53,13 @@ const HeaderBanner = ({
                         <Input
                             type={'text'}
                             name={'닉네임'}
-                            value={nickname}
-                            onChange={onChangeNicknameHandler}
+                            value={nickName}
+                            onChange={onChangeNickNameHandler}
                             placeholder={'닉네임'}
                             className="mainInput"
                         />
-                        {nicknameError && (
-                            <small className="textfield-helper">{nicknameError}</small>
+                        {nickNameError && (
+                            <small className="textfield-helper">{nickNameError}</small>
                         )}
                         <CheckBoxInput
                             labelForId={'check1'}

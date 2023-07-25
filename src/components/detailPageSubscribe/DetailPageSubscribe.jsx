@@ -5,18 +5,18 @@ import { postSub } from "../../api/sub";
 
 export const DetailPageSubscribe = () => {
     const [email, setEmail] = useState("");
-    const [nickname, setNickname] = useState("");
+    const [nickName, setNickName] = useState("");
     const [emailError, setEmailError] = useState("");
-    const [nicknameError, setNicknameError] = useState("");
+    const [nickNameError, setNickNameError] = useState("");
 
     const emailOnchangeHadler = (event) => {
         setEmail(event.target.value);
         setEmailError("");
     }
 
-    const nicknameOnchangeHadler = (event) => {
-        setNickname(event.target.value);
-        setNicknameError("");
+    const nickNameOnchangeHadler = (event) => {
+        setNickName(event.target.value);
+        setNickNameError("");
     }
 
     const subscribeClickHandler = async (event) => {
@@ -29,17 +29,17 @@ export const DetailPageSubscribe = () => {
             setEmailError("이메일 형식이 아니에요!");
             return;
         }
-        if (nickname === '') {
-            setNicknameError("닉네임을 입력해주세요.");
+        if (nickName === '') {
+            setNickNameError("닉네임을 입력해주세요.");
             return;
         }
 
-        const subData = { email, nickname };
+        const subData = { email, nickName };
         try {
             await postSub(subData);
             alert("구독 신청이 완료되었습니다.");
             setEmail("");
-            setNickname("");
+            setNickName("");
         } catch (error) {
             alert("구독 신청에 실패했습니다. 다시 시도해주세요.");
             console.error(error);
@@ -54,9 +54,9 @@ export const DetailPageSubscribe = () => {
                     {emailError && <small className="textfield-helper">{emailError}</small>}
                 </div>
                 <div className="inline-group">
-                    <div className="textfield post-subscribe-field nickname">
-                        <input type="text" name="nickname" placeholder="닉네임" value={nickname} onChange={nicknameOnchangeHadler} />
-                        {nicknameError && <small className="textfield-helper">{nicknameError}</small>}
+                    <div className="textfield post-subscribe-field nickName">
+                        <input type="text" name="nickName" placeholder="닉네임" value={nickName} onChange={nickNameOnchangeHadler} />
+                        {nickNameError && <small className="textfield-helper">{nickNameError}</small>}
                     </div>
                     <Button size="sm" theme="DetailPageNewsBtn" type="submit" onClickEvent={subscribeClickHandler}>뉴스레터 구독하기</Button>
                 </div>
