@@ -34,6 +34,8 @@ const DetailPage = () => {
         return <div>An error occurred</div>;
     }
 
+    const tags = post.tag.split(' ');
+
     return (
         <section className="post is-sticky">
             <div className="post-scrollwrap">
@@ -52,7 +54,9 @@ const DetailPage = () => {
                 </PostContainer>
             </div>
             <PostHashtag className="post-hashtag">
-                <a className="post-hashtag-item" href={`/search/posts?keyword=${post.category}`}>#{post.category}</a>
+                {tags.map((tag, index) => (
+                    <a key={index} className="post-hashtag-item" href={`/search/posts?keyword=${tag}`}>#{tag}</a>
+                ))}
             </PostHashtag>
             <DetailPageLike post={post} likeButtonHandler={likeButtonHandler} />
             <DetailPageSubscribe />
