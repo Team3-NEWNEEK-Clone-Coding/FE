@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import NewsCard from '../components/newsCard/NewsCard';
-import styled from 'styled-components';
-import { useParams, useNavigate } from 'react-router-dom';
-import { COLOR } from '../assets/colors';
+import { useParams } from 'react-router-dom';
 import Button from '../components/common/button/Button';
 import { searchNews } from '../api/news';
 import { PageTitle, ButtonBox, SearchContentWrap } from '../components/newsPage/NewsPageStyle';
-import { useQuery } from 'react-query';
 import useFetchNews from '../hooks/useFetchNews';
-
+import SearchOptionList from '../components/SearchOptionList';
 const mockDate = [
     {
         title: '우리가 알던 중국 경제가 아냐',
@@ -48,55 +45,13 @@ const mockDate = [
     },
 ];
 
-//TODO : 카테고리 페이지 작업중이었음
 const CategoryReadContainer = () => {
-    // const { keyword } = useParams();
-    // const nav = useNavigate();
-
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [newsData, setNewsData] = useState(null);
-    // const [totalPage, setTotalPage] = useState(1);
-    // const [isFetching, setIsFetching] = useState(false);
-
-    // const { isLoading, isError, refetch } = useQuery(
-    //     ['searchNews', currentPage],
-    //     () => searchNews({ currentPage, keyword }),
-    //     {
-    //         onSuccess: (response) => {
-    //             setCurrentPage(1);
-    //             setNewsData([]);
-    //             setNewsData((prevData) =>
-    //                 prevData ? [...prevData, ...response.newsList] : response.newsList
-    //             );
-    //             setTotalPage(response.totalPages);
-    //             setIsFetching(false);
-    //         },
-    //     }
-    // );
-
-    // useEffect(() => {
-    //     refetch();
-    // }, [keyword]);
-
-    // Search
     const { keyword } = useParams();
-    const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage } = useFetchNews(
-        'searchNews',
-        searchNews,
-        keyword
-    );
+    const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage, totalNewsCount } =
+        useFetchNews('searchNews', searchNews, keyword);
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching data</div>;
-
-    // if (isLoading) return <div>Loading...</div>;
-    // if (isError) return <div>Error fetching data</div>;
-
-    // const handleLoadMore = () => {
-    //     setCurrentPage((prevPage) => prevPage + 1);
-    // };
-
-    console.log(newsData);
 
     return (
         <SearchContentWrap>
@@ -106,7 +61,7 @@ const CategoryReadContainer = () => {
                         <PageTitle>
                             <em className="keyword">{keyword}</em>의 검색 결과예요.
                         </PageTitle>
-                        <span className="status">🦔고슴이 : 3개 찾았슴!</span>
+                        <span className="status">🦔고슴이 : {totalNewsCount}개 찾았슴!</span>
                         <div className="sorting">최신순</div>
                         <NewsCard newsData={newsData} $borderTop />
                         {currentPage !== totalPage && (
@@ -118,9 +73,12 @@ const CategoryReadContainer = () => {
                         )}
                     </>
                 ) : (
-                    <PageTitle>
-                        <em className="keyword">{keyword}</em>의 검색 결과가 없습니다.
-                    </PageTitle>
+                    <>
+                        <PageTitle>
+                            <em className="keyword">{keyword}</em>의 검색 결과가 없습니다.
+                        </PageTitle>
+                        <SearchOptionList />
+                    </>
                 )}
             </div>
         </SearchContentWrap>

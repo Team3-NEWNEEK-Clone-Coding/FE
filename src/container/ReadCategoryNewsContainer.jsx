@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import NewsCard from '../components/newsCard/NewsCard';
 import CateEmoji from '../assets/emojis/categoryEmojis';
 import categorys from '../assets/categoryInfo';
@@ -30,33 +30,6 @@ const CategoryReadContainer = () => {
     const cateEmojiname = cate.emoji;
     const Emoji = CateEmoji[cateEmojiname];
 
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [newsData, setNewsData] = useState(null);
-    // const [totalPage, setTotalPage] = useState(1);
-    // const [isFetching, setIsFetching] = useState(false);
-
-    // const { isLoading, isError, refetch } = useQuery(
-    //     ['cateNews', currentPage],
-    //     () => getCategoryNews({ currentPage, category }),
-    //     {
-    //         onSuccess: (response) => {
-    //             setNewsData((prevData) =>
-    //                 prevData ? [...prevData, ...response.newsList] : response.newsList
-    //             );
-    //             setTotalPage(response.totalPages);
-    //             setIsFetching(false);
-    //         },
-    //     }
-    // );
-
-    // useEffect(() => {
-    //     setCurrentPage(1);
-    //     setNewsData([]);
-    //     refetch();
-    // }, [category]);
-
-    // Category
-    // const { category } = useParams();
     const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage } = useFetchNews(
         'cateNews',
         getCategoryNews,
@@ -65,13 +38,6 @@ const CategoryReadContainer = () => {
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching data</div>;
-
-    // if (isLoading) return <div>Loading...</div>;
-    // if (isError) return <div>Error fetching data</div>;
-
-    // const handleLoadMore = () => {
-    //     setCurrentPage((prevPage) => prevPage + 1);
-    // };
 
     return (
         <>
