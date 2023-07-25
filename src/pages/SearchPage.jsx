@@ -5,14 +5,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { COLOR } from '../assets/colors';
 import { useNavigate } from 'react-router-dom';
-const InputBox = styled.form`
-    position: relative;
-`;
-const ButtonGoBack = styled.button`
-    position: absolute;
-    top: 0;
-`;
-
+// import { useHistory } from 'react-router-dom';
 const SEARCH_OPTIONS = [
     { option: '한미정상회담' },
     { option: '간호법' },
@@ -36,13 +29,26 @@ const SearchOptionList = styled.ul`
         }
     }
 `;
-
-const SearchFormStyle = styled.form`
+const SearchFormStyle = styled.div`
     margin: 0 auto;
     padding: 0 20px;
     width: 500px;
 `;
-
+const InputBox = styled.form`
+    position: relative;
+`;
+const ButtonGoBack = styled.button`
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-45%);
+    z-index: 20;
+    cursor: pointer;
+    svg {
+        width: 25px;
+        height: 25px;
+    }
+`;
 // const SearchForm = () => {
 
 // }
@@ -53,14 +59,18 @@ const SearchPage = () => {
         setSearch(e.target.value);
     };
     const navigate = useNavigate();
+
     const onSubmitSearchHandler = (e) => {
         e.preventDefault();
         navigate(`/search/${search}`);
     };
+    const onClickGoBackHandler = (e) => {
+        navigate(-1);
+    };
     return (
         <SearchFormStyle>
             <InputBox onSubmit={onSubmitSearchHandler}>
-                <ButtonGoBack>
+                <ButtonGoBack onClick={onClickGoBackHandler}>
                     <Icon.ArrowLeft />
                 </ButtonGoBack>
                 <Input
@@ -74,9 +84,9 @@ const SearchPage = () => {
             </InputBox>
             <PageTitle>고슴이 추천 키워드</PageTitle>
             <SearchOptionList>
-                {SEARCH_OPTIONS.map((option) => {
+                {SEARCH_OPTIONS.map((option, idx) => {
                     return (
-                        <li>
+                        <li key={`search-option${idx}`}>
                             <Link to={`/search/${option.option}`}>{option.option}</Link>
                         </li>
                     );
