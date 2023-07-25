@@ -170,7 +170,7 @@ const SignUpPage = () => {
 
             <div className="checkbox">
               <input type="checkbox" id="check-all-2" name="all" />
-              <span className="InputTitle">클론 코딩 프로젝 트에 오신걸 환영합니다.</span>
+              <span className="InputTitle">클론 코딩 프로젝트에 오신걸 환영합니다.!</span>
               <a
                 className="inputLink"
                 href="https://newneek.notion.site/1e9ac1561fdb44109e2b154cf3b6a769"
