@@ -29,12 +29,12 @@ const SearchOptionList = styled.ul`
         }
     }
 `;
-const SearchFormStyle = styled.div`
+const SearchPageStyle = styled.div`
     margin: 0 auto;
     padding: 0 20px;
     width: 500px;
 `;
-const InputBox = styled.form`
+const InputBox = styled.div`
     position: relative;
 `;
 const ButtonGoBack = styled.button`
@@ -68,19 +68,21 @@ const SearchPage = () => {
         navigate(-1);
     };
     return (
-        <SearchFormStyle>
-            <InputBox onSubmit={onSubmitSearchHandler}>
+        <SearchPageStyle>
+            <InputBox>
                 <ButtonGoBack onClick={onClickGoBackHandler}>
                     <Icon.ArrowLeft />
                 </ButtonGoBack>
-                <Input
-                    type={'text'}
-                    name={'search'}
-                    value={search}
-                    onChange={onChangeSearchHandler}
-                    placeholder={'이메일 주소'}
-                    className="SearchInput"
-                />
+                <form action="" onSubmit={onSubmitSearchHandler}>
+                    <Input
+                        type={'text'}
+                        name={'search'}
+                        value={search}
+                        onChange={onChangeSearchHandler}
+                        placeholder={'고슴아 이게 궁금해.(인물, 이슈)'}
+                        className="SearchInput"
+                    />
+                </form>
             </InputBox>
             <PageTitle>고슴이 추천 키워드</PageTitle>
             <SearchOptionList>
@@ -92,7 +94,7 @@ const SearchPage = () => {
                     );
                 })}
             </SearchOptionList>
-        </SearchFormStyle>
+        </SearchPageStyle>
     );
 };
 
