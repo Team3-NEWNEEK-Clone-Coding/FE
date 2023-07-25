@@ -17,7 +17,7 @@ const SubscribeFooterBanner = () => {
           {
             Array(24)
               .fill('뉴스레터 구독하기')
-              .map((value) => <p aria-hidden="true">{value}</p>)
+              .map((value, index) => <p key={index} aria-hidden="true">{value}</p>)
           }
         </div>
       </FooterStatics>
