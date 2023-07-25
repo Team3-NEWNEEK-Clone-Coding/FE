@@ -16,13 +16,13 @@ export const getAllNews = async (currentPage) => {
     } catch (error) { }
 };
 
-export const getCategoryNews = async ({ currentPage, category }) => {
-    console.log(currentPage, category);
+export const getCategoryNews = async ({ currentPage, dependency }) => {
+    console.log(currentPage, dependency);
     try {
         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/news/category`, {
             params: {
                 page: currentPage,
-                category: category,
+                category: dependency,
                 size: 12,
                 sortBy: 'newsDate',
                 isAsc: 'false',
@@ -30,26 +30,23 @@ export const getCategoryNews = async ({ currentPage, category }) => {
         });
         return response.data;
     } catch (error) {
-        console.log(currentPage, category);
+        console.log(currentPage, dependency);
     }
 };
 
-export const searchNews = async ({ currentPage, keyword }) => {
+export const searchNews = async ({ currentPage, dependency }) => {
     console.log('news');
-    console.log(keyword);
+    console.log(dependency);
     try {
-        const response = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/api/news/search/basic`,
-            {
-                params: {
-                    keyword: keyword,
-                    page: currentPage,
-                    size: 12,
-                    sortBy: 'newsDate',
-                    isAsc: 'false',
-                },
-            }
-        );
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/news/search`, {
+            params: {
+                keyword: dependency,
+                page: currentPage,
+                size: 12,
+                sortBy: 'newsDate',
+                isAsc: 'false',
+            },
+        });
         return response.data;
     } catch (error) { }
 };

@@ -21,8 +21,11 @@ export const ButtonBox = styled.div`
         margin: 0 auto;
     }
 `;
+
 export const SearchContentWrap = styled.div`
     border-top: 1px solid ${COLOR.black};
+    min-height: 50vh;
+    padding-bottom: 70px;
     .status {
         display: block;
         margin: 0.5rem 0 0;
