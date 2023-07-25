@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import NewsCard from '../components/newsCard/NewsCard';
 import CateEmoji from '../assets/emojis/categoryEmojis';
+import categorys from '../assets/categoryInfo';
 import NavBar from '../layout/NavBar/NavBar';
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import Button from '../components/common/button/Button';
 import { PageTitle, ButtonBox } from '../components/newsPage/NewsPageStyle';
-import { useQuery, useQueryClient } from 'react-query';
 import useFetchNews from '../hooks/useFetchNews';
-// import useNewsData from '../hooks/useNewsData';
 import { getCategoryNews } from '../api/news';
 const mockDate = [
     {
@@ -23,19 +21,6 @@ const mockDate = [
         category: '경제',
         date: '2023.07.21',
     },
-];
-
-const categorys = [
-    { link: 'politics', tag: '정치', emoji: 'Politics', idx: 0 },
-    { link: 'money', tag: '경제', emoji: 'Money', idx: 1 },
-    { link: 'world', tag: '국제', emoji: 'World', idx: 2 },
-    { link: 'tech', tag: '증권', emoji: 'Tech', idx: 3 },
-    { link: 'work', tag: '산업', emoji: 'Work', idx: 4 },
-    { link: 'echo', tag: '부동산', emoji: 'Echo', idx: 5 },
-    { link: 'human', tag: '오피니언', emoji: 'Human', idx: 6 },
-    { link: 'social', tag: '사회', emoji: 'Social', idx: 7 },
-    { link: 'culture', tag: '문화', emoji: 'Culture', idx: 8 },
-    { link: 'life', tag: '연예', emoji: 'Life', idx: 9 },
 ];
 
 //TODO : 카테고리 페이지 작업중이었음
