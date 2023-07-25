@@ -5,12 +5,12 @@ import { useMutation } from 'react-query';
 
 const CreateSubscriberContainer = () => {
     const [email, setEmail] = useState("");
-    const [nickname, setNickname] = useState("");
+    const [nickName, setNickName] = useState("");
     const [checkbox, setCheckbox] = useState(false);
     const [checkbox2, setCheckbox2] = useState(false);
 
     const [emailError, setEmailError] = useState("");
-    const [nicknameError, setNicknameError] = useState("");
+    const [nickNameError, setNickNameError] = useState("");
     const [checkboxError, setCheckboxError] = useState("");
     const [checkboxError2, setCheckboxError2] = useState("");
 
@@ -21,9 +21,9 @@ const CreateSubscriberContainer = () => {
         setEmailError("");
     }
 
-    const onChangeNicknameHandler = (e) => {
-        setNickname(e.target.value);
-        setNicknameError("");
+    const onChangeNickNameHandler = (e) => {
+        setNickName(e.target.value);
+        setNickNameError("");
     }
 
     const onChangeCheckBoxHandler = (e) => {
@@ -46,8 +46,8 @@ const CreateSubscriberContainer = () => {
             setEmailError("이메일 형식이 아니에요!");
             return;
         }
-        if (nickname === '') {
-            setNicknameError("닉네임을 입력해주세요.");
+        if (nickName === '') {
+            setNickNameError("닉네임을 입력해주세요.");
             return;
         }
         if (!checkbox) {
@@ -58,12 +58,12 @@ const CreateSubscriberContainer = () => {
             setCheckboxError2("약관에 동의해주세요.");
             return;
         }
-        const subData = { email, nickname };
+        const subData = { email, nickName };
         try {
             await mutation.mutateAsync(subData);
             alert("구독 신청이 완료되었습니다.");
             setEmail("");
-            setNickname("");
+            setNickName("");
             setCheckbox(false);
             setCheckbox2(false);
         } catch (error) {
@@ -76,15 +76,15 @@ const CreateSubscriberContainer = () => {
         <HeaderBanner
             onSubmitEvent={onSubmitSubscribeHandler}
             email={email}
-            nickname={nickname}
+            nickName={nickName}
             checkbox={checkbox}
             checkbox2={checkbox2}
             emailError={emailError}
-            nicknameError={nicknameError}
+            nickNameError={nickNameError}
             checkboxError={checkboxError}
             checkboxError2={checkboxError2}
             onChangeEmailHandler={onChangeEmailHandler}
-            onChangeNicknameHandler={onChangeNicknameHandler}
+            onChangeNickNameHandler={onChangeNickNameHandler}
             onChangeCheckBoxHandler={onChangeCheckBoxHandler}
             onChangeCheckBoxHandler2={onChangeCheckBoxHandler2}
         />
