@@ -10,36 +10,34 @@ const EmojiStyle = styled.span`
 const Politics = ({ ...restProps }) => {
     return <EmojiStyle {...restProps}>⚖️</EmojiStyle>;
 };
-
 const Money = ({ ...restProps }) => {
     return <EmojiStyle {...restProps}>💰</EmojiStyle>;
 };
 const World = ({ ...restProps }) => {
     return <EmojiStyle {...restProps}>🌐</EmojiStyle>;
 };
-const Tech = ({ ...restProps }) => {
-    return <EmojiStyle {...restProps}>🤖</EmojiStyle>;
+const Stock = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>📈</EmojiStyle>;
 };
-
 const Work = ({ ...restProps }) => {
-    return <EmojiStyle {...restProps}>💪</EmojiStyle>;
+    return <EmojiStyle {...restProps}>⚙️</EmojiStyle>;
 };
-const Echo = ({ ...restProps }) => {
-    return <EmojiStyle {...restProps}>🌱</EmojiStyle>;
+const House = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>🏠</EmojiStyle>;
 };
-const Human = ({ ...restProps }) => {
-    return <EmojiStyle {...restProps}>🤝</EmojiStyle>;
+const Opinion = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>🧑‍💼</EmojiStyle>;
 };
 const Social = ({ ...restProps }) => {
     return <EmojiStyle {...restProps}>👥</EmojiStyle>;
 };
 const Culture = ({ ...restProps }) => {
-    return <EmojiStyle {...restProps}>🎞</EmojiStyle>;
+    return <EmojiStyle {...restProps}>🏅</EmojiStyle>;
 };
-const Life = ({ ...restProps }) => {
-    return <EmojiStyle {...restProps}>🧘</EmojiStyle>;
+const Entertainments = ({ ...restProps }) => {
+    return <EmojiStyle {...restProps}>🎤</EmojiStyle>;
 };
 
-const CateEmoji = { Life, Culture, Social, Human, Echo, Work, Tech, World, Money, Politics };
+const CateEmoji = { Entertainments, Culture, Social, Opinion, House, Work, Stock, World, Money, Politics };
 
 export default CateEmoji;
