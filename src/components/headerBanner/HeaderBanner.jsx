@@ -19,7 +19,7 @@ const HeaderBanner = ({
     onChangeCheckBoxHandler,
     onChangeCheckBoxHandler2,
 }) => {
-    console.log(nickname);
+    // console.log(nickname);
     return (
         <HeaderBannerStyle>
             <div className="img-wrap">
