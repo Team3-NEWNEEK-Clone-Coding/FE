@@ -7,7 +7,9 @@ const Input = ({ type, name, value, onChange, required, error, placeholder, maxL
       // 만약 최대 글자 수를 초과하면 입력을 막습니다.
       return;
     }
-    onChange(e);
+    if (typeof onChange === "function") {
+      onChange(e);
+    }
   };
 
   return (
@@ -17,7 +19,7 @@ const Input = ({ type, name, value, onChange, required, error, placeholder, maxL
           type={type}
           name={name}
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
           required={required}
           placeholder={placeholder}
           className={className}

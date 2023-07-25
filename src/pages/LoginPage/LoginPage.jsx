@@ -75,19 +75,18 @@ const LoginPage = () => {
           <LoginDivider />
           <LoginInputContainer>
             <div className="LoginDiv">
-              <InputContainer fields={fields} onSubmit={loginSubmit} />
+              <InputContainer fields={fields} />
             </div>
           </LoginInputContainer>
           <div className="forgotPw">
             <Link to="#">비밀번호를 잊으셨나요?</Link>
           </div>
-          <Button size="xl" theme="LoginBtn">
+          <Button size="xl" theme="LoginBtn" type="submit">
             로그인
           </Button>
           <div className="SignBtn">
             <Link to="/signup">회원가입 하기</Link>
           </div>
-          <LoginContainer />
         </LoginContainer>
       </form>
     </Container>
