@@ -3,12 +3,12 @@ import { COLOR } from '../../assets/colors';
 
 export const HomeBannerStyle = styled.a`
     display: flex;
-    margin: 14rem 0 8rem;
+    margin: ${(props) => props.$margin || `14rem 0 0`};
     padding-top: 90px;
     background-color: ${COLOR.orange};
     position: relative;
     border-top: 2px solid ${COLOR.black};
-    border-bottom: 2px solid ${COLOR.black};
+    border-bottom: ${(props) => props.$borderBottom || `none`};
     &:hover img.hover-img {
         opacity: 1;
     }
@@ -21,7 +21,7 @@ export const BannerImgWrap = styled.figure`
     transform: translateX(-50%);
     img {
         width: 100%;
-        height: 100%;
+        height: auto;
         object-fit: cover;
         &.hover-img {
             position: absolute;

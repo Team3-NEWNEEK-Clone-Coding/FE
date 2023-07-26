@@ -29,7 +29,8 @@ const GlobalStyle = createGlobalStyle`
     }
     .center{
         max-width: 1440px;
-        padding: 0 40px;
+        min-height: 76vh;
+        padding: 0 40px 60px;
         margin: auto;
         @media screen and (max-width: 1360px) {
             max-width: 1040px;

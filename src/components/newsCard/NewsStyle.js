@@ -28,7 +28,7 @@ export const NewsList = styled.ul`
     }
 `;
 
-export const NewsCardStyle = styled(Link)`
+export const NewsCardStyle = styled.li`
     width: 25%;
     border: 1px solid ${COLOR.black};
     border-top: none;

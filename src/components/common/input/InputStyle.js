@@ -41,6 +41,9 @@ export const InputWrapper = styled.div`
             border: 1px solid #051619;
             box-shadow: none;
             border-radius: 0;
+            @media screen and (max-width: 900px) {
+                width: 100%;
+            }
         }
 
         .SearchInput {

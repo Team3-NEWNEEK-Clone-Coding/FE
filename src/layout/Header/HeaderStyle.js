@@ -15,7 +15,7 @@ export const HeaderStyle = styled.header`
         width: 226px;
         img {
             width: 100%;
-            height: 100%;
+            height: auto;
         }
         @media screen and (max-width: 900px) {
             width: 184px;

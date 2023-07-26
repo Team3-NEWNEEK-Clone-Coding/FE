@@ -8,7 +8,7 @@ const Header = ({ ...restProps }) => {
     return (
         <HeaderStyle {...restProps}>
             <Link to="/" className="logo-img-wrap">
-                <img src="/imgs/new-neek-logo.png" alt="newneek-logo" />
+                <img src="/imgs/new-neek-logo.png" alt="newneek-logo" width="226" height="32" />
             </Link>
             <HeaderIconBox>
                 <HaederButton onClick={() => nav('/search')}>
