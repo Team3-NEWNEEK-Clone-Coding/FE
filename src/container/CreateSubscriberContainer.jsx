@@ -2,72 +2,76 @@ import React, { useState } from 'react';
 import HeaderBanner from '../components/headerBanner/HeaderBanner';
 import { postSub } from '../api/sub';
 import { useMutation } from 'react-query';
-
+import { useSelector } from 'react-redux';
 const CreateSubscriberContainer = () => {
-    const [email, setEmail] = useState("");
-    const [nickName, setNickName] = useState("");
+    const [email, setEmail] = useState('');
+    const [nickName, setNickName] = useState('');
     const [checkbox, setCheckbox] = useState(false);
     const [checkbox2, setCheckbox2] = useState(false);
 
-    const [emailError, setEmailError] = useState("");
-    const [nickNameError, setNickNameError] = useState("");
-    const [checkboxError, setCheckboxError] = useState("");
-    const [checkboxError2, setCheckboxError2] = useState("");
+    const [emailError, setEmailError] = useState('');
+    const [nickNameError, setNickNameError] = useState('');
+    const [checkboxError, setCheckboxError] = useState('');
+    const [checkboxError2, setCheckboxError2] = useState('');
+
+    const { subscriber } = useSelector((state) => {
+        return state.subscriber;
+    });
 
     const mutation = useMutation((subData) => postSub(subData));
 
-    const onChangeEmailHandler = (e) => { 
+    const onChangeEmailHandler = (e) => {
         setEmail(e.target.value);
-        setEmailError("");
-    }
+        setEmailError('');
+    };
 
     const onChangeNickNameHandler = (e) => {
         setNickName(e.target.value);
-        setNickNameError("");
-    }
+        setNickNameError('');
+    };
 
     const onChangeCheckBoxHandler = (e) => {
         setCheckbox(e.target.checked);
-        setCheckboxError("");
-    }
-    
+        setCheckboxError('');
+    };
+
     const onChangeCheckBoxHandler2 = (e) => {
         setCheckbox2(e.target.checked);
-        setCheckboxError2("");
-    }
+        setCheckboxError2('');
+    };
 
     const onSubmitSubscribeHandler = async (e) => {
         e.preventDefault();
         if (email === '') {
-            setEmailError("이메일 주소를 입력해주세요.");
+            setEmailError('이메일 주소를 입력해주세요.');
             return;
         }
         if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email) === false) {
-            setEmailError("이메일 형식이 아니에요!");
+            setEmailError('이메일 형식이 아니에요!');
             return;
         }
         if (nickName === '') {
-            setNickNameError("닉네임을 입력해주세요.");
+            setNickNameError('닉네임을 입력해주세요.');
             return;
         }
         if (!checkbox) {
-            setCheckboxError("약관에 동의해주세요.");
+            setCheckboxError('약관에 동의해주세요.');
             return;
         }
         if (!checkbox2) {
-            setCheckboxError2("약관에 동의해주세요.");
+            setCheckboxError2('약관에 동의해주세요.');
             return;
         }
         const subData = { email, nickName };
         try {
             await mutation.mutateAsync(subData);
-            alert("구독 신청이 완료되었습니다.");
-            setEmail("");
-            setNickName("");
+            alert('구독 신청이 완료되었습니다.');
+            setEmail('');
+            setNickName('');
             setCheckbox(false);
             setCheckbox2(false);
         } catch (error) {
-            alert("구독 신청에 실패했습니다. 다시 시도해주세요.");
+            alert('구독 신청에 실패했습니다. 다시 시도해주세요.');
             console.error(error);
         }
     };
@@ -87,6 +91,7 @@ const CreateSubscriberContainer = () => {
             onChangeNickNameHandler={onChangeNickNameHandler}
             onChangeCheckBoxHandler={onChangeCheckBoxHandler}
             onChangeCheckBoxHandler2={onChangeCheckBoxHandler2}
+            subscriber={subscriber}
         />
     );
 };
