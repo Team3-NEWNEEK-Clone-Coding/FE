@@ -21,13 +21,11 @@ const useLoadMore = (fetchFunction) => {
         }
         return allCachedData;
     }, [queryClient, currentPage]);
-    console.log(currentPage);
-    // const cachedData = getInitialData(currentPage);
+
     const { data, isLoading, isError, refetch } = useQuery(
         ['data', currentPage],
         () => fetchFunction(currentPage),
         {
-            // enabled: !isFetching,
             initialData: cachedData,
             onSuccess: (response) => {
                 if (currentPage === 1) {
@@ -41,18 +39,11 @@ const useLoadMore = (fetchFunction) => {
         }
     );
 
-    // useEffect(() => {
-    //     if (data) {
-    //         setNewsData(data.newsList);
-    //     }
-    // }, []);
-
     const handleLoadMore = () => {
         setCurrentPage((prevPage) => prevPage + 1);
     };
 
     return {
-        // data: cachedData.length === 0 && data ? data.newsList : cachedData,
         data: newsData,
         currentPage,
         totalPage,
