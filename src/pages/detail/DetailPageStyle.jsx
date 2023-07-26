@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 export const PostHead = styled.header`
     margin: 0 0 4rem;
     padding: 4rem 5% 5.5rem;
+    border-top: 1px solid #051619;
     border-bottom: 1px solid #051619;
     text-align: center;
     overflow: hidden;
