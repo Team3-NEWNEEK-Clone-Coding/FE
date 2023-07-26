@@ -34,8 +34,8 @@ const InputContainer = ({ fields, onChange, onSubmit }) => {
       return;
     }
 
-    if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}/.test(formData.password)) {
-      setPasswordError('비밀번호는 숫자, 소문자, 대문자를 포함하여 6~15자여야 합니다.');
+    if (!/(?=.*\d)(?=.*[a-z]).{6,15}/.test(formData.password)) {
+      setPasswordError('비밀번호는 숫자, 소문자를 포함하여 6~15자여야 합니다.');
       return;
     }
 

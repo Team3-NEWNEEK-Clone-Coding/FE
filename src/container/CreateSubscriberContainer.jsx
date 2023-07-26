@@ -91,8 +91,10 @@ const CreateSubscriberContainer = () => {
             onChangeNickNameHandler={onChangeNickNameHandler}
             onChangeCheckBoxHandler={onChangeCheckBoxHandler}
             onChangeCheckBoxHandler2={onChangeCheckBoxHandler2}
+            subscriber={subscriber}
         />
     );
 };
 
 export default CreateSubscriberContainer;
+
