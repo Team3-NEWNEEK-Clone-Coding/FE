@@ -8,8 +8,6 @@ import Button from '../components/common/button/Button';
 import { PageTitle, ButtonBox } from '../components/newsPage/NewsPageStyle';
 import useFetchNews from '../hooks/useFetchNews';
 import { getCategoryNews } from '../api/news';
-import LoadingPage from '../pages/LoginPage/LoginPage';
-
 const mockDate = [
     {
         title: '우리가 알던 중국 경제가 아냐',
@@ -38,7 +36,7 @@ const CategoryReadContainer = () => {
         category
     );
 
-    if (isLoading) return <div>...Loading</div>;
+    if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching data</div>;
 
     return (
@@ -49,7 +47,7 @@ const CategoryReadContainer = () => {
                     {Emoji && <Emoji $size={'2rem'} />}
                     {cate.tag}
                 </PageTitle>
-                {isLoading ? <div>Loading...</div> : <NewsCard newsData={newsData} $borderTop />}
+                <NewsCard newsData={newsData} $borderTop />
                 {currentPage !== totalPage && (
                     <ButtonBox>
                         <Button size="md" theme="moreBtn" onClickEvent={handleLoadMore}>

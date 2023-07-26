@@ -1,60 +1,51 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useCallback } from 'react';
 import { useQueryClient, useQuery } from 'react-query';
-import { useDispatch } from 'react-redux';
-import { subscriberSub } from '../redux/modules/subscriberSlice';
+
 const useLoadMore = (fetchFunction) => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [data, setData] = useState(null);
     const [totalPage, setTotalPage] = useState(1);
-    const [isFetching, setIsFetching] = useState(true);
-    const [newsData, setNewsData] = useState([]);
+    const [isFetching, setIsFetching] = useState(false);
+
     const queryClient = useQueryClient();
-    const dispatch = useDispatch();
 
-    const cachedData = useMemo(() => {
-        const allCachedData = [];
-        for (let pageIndex = 1; pageIndex <= currentPage; pageIndex++) {
-            const cachedData = queryClient.getQueryData(['data', pageIndex]);
-            if (cachedData) {
-                const dataList = Array.isArray(cachedData.newsList) ? cachedData.newsList : [];
-                allCachedData.push(...dataList);
+    const getInitialData = useCallback(
+        (pageNum) => {
+            const allCachedData = [];
+            for (let pageIndex = 1; pageIndex <= pageNum; pageIndex++) {
+                const cachedData = queryClient.getQueryData(['data', pageIndex]);
+                if (cachedData) {
+                    const dataList = Array.isArray(cachedData.newsList) ? cachedData.newsList : [];
+                    allCachedData.push(...dataList);
+                }
             }
-        }
+            return allCachedData;
+        },
+        [queryClient]
+    );
 
-        return allCachedData;
-    }, [queryClient, currentPage]);
-    console.log(currentPage);
-    // const cachedData = getInitialData(currentPage);
-    const { data, isLoading, isError, refetch } = useQuery(
+    const cachedData = getInitialData(currentPage);
+    const { isLoading, isError, refetch } = useQuery(
         ['data', currentPage],
         () => fetchFunction(currentPage),
         {
-            // enabled: !isFetching,
             initialData: cachedData,
             onSuccess: (response) => {
-                if (currentPage === 1) {
-                    setNewsData(response.newsList);
-                } else {
-                    setNewsData([...cachedData, ...response.newsList]);
-                }
+                setData((prevData) =>
+                    prevData ? [...prevData, ...response.newsList] : response.newsList
+                );
                 setTotalPage(response.totalPages);
-                dispatch(subscriberSub(response.subscriberCount));
+                setIsFetching(false);
             },
         }
     );
-
-    // useEffect(() => {
-    //     if (data) {
-    //         setNewsData(data.newsList);
-    //     }
-    // }, []);
 
     const handleLoadMore = () => {
         setCurrentPage((prevPage) => prevPage + 1);
     };
 
     return {
-        // data: cachedData.length === 0 && data ? data.newsList : cachedData,
-        data: newsData,
+        data,
         currentPage,
         totalPage,
         isLoading,

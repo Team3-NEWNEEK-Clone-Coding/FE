@@ -41,7 +41,7 @@ const DetailPage = () => {
             <div className="post-scrollwrap">
                 <PostHead className="post-head">
                     <ProgressBar title={post.title} />
-                    <a className="post-head-runninghead" href="/tag/domestic-issue">{post.category}</a>
+                    <a className="post-head-runninghead" href={`/tag/${post.category}`}>{post.category}</a>
                     <h2 className="post-head-headline">{post.title}</h2>
                     <time className="post-head-date">{post.date}</time>
                     <i className="icon-bullet"></i>
