@@ -160,7 +160,7 @@ const SignUpPage = () => {
           </SignUpInputContainer>
           <div className="EmojiPickerDiv">
             <StyledDiv>
-              <EmojiPicker onEmojiSelect={(emoji) => setSelectedEmoji(emoji)} />
+              <EmojiPicker />
             </StyledDiv>
           </div>
           <SignUpTerms>

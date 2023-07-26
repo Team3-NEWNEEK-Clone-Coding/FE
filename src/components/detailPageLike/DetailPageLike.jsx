@@ -29,10 +29,10 @@ const DetailPageLike = ({ post, id }) => {
         window.open(url, 'newwindow', 'width=600, height=400');
     }
 
-    const twitterShareHandelr = () => {
-        const url = `https://twitter.com/share?url=${window.location.href}&text=${post.title}`;
-        window.open(url, 'newwindow', 'width=600, height=400');
-    }
+  const twitterShareHandelr = () => {
+    const url = `https://twitter.com/share?url=${window.location.href}&text=${post.title}`;
+    window.open(url, "newwindow", "width=600, height=400");
+  };
 
     return (
         <PostFoot className="post-foot">
@@ -68,5 +68,4 @@ const DetailPageLike = ({ post, id }) => {
     )
 }
 
-export default DetailPageLike
-
+export default DetailPageLike;
