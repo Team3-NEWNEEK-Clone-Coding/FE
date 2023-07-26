@@ -13,6 +13,13 @@ export const PostFootReaction = styled.div`
     font-size: 1rem;
     position: relative;
 
+    .liked {
+        color: #ff6b00;
+    }
+    .unliked {
+        color: #9e9e9e;
+    }
+
     button {
         display: flex;
         color: #9e9e9e;
