@@ -52,3 +52,11 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
     return { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage, totalNewsCount };
 };
 export default useFetchNews;
+
+
+
+
+
+
+
+
