@@ -11,12 +11,6 @@ import Button from "../../components/common/button/Button";
 import InputContainer from "../../container/InputContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import EmojiPicker from "./Emojipicker";
-
-// const handleEmojiSelect = (emoji) => {
-//   // 이모지 선택 시 처리 로직
-//   console.log("선택된 이모지:", emoji);
-// };
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
@@ -26,34 +20,62 @@ const SignUpPage = () => {
 
   const navigate = useNavigate();
 
+  const handleEmailChange = (e) => {
+    console.log("Email input: ", e.target.value);
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    console.log("Password input: ", e.target.value);
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    console.log("Confirm password input: ", e.target.value);
+
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleNicknameChange = (e) => {
+    console.log("Nickname input: ", e.target.value);
+    setNickname(e.target.value);
+  };
+
+  const handleInputChange = (name, value) => {
+    if (name === "email") handleEmailChange({ target: { value } });
+    if (name === "password") handlePasswordChange({ target: { value } });
+    if (name === "confirmPassword") handleConfirmPasswordChange({ target: { value } });
+    if (name === "nickname") handleNicknameChange({ target: { value } });
+  };
+
   const fields = [
     {
       name: "email",
       type: "email",
       placeholder: "이메일",
       required: true,
-      onChange: (e) => setEmail(e.target.value),
+      onChange: handleEmailChange,
     },
     {
       name: "password",
       type: "password",
       placeholder: "비밀번호 (6 ~ 15자 이상)",
       required: true,
-      onChange: (e) => setPassword(e.target.value),
+      onChange: handlePasswordChange,
     },
     {
       name: "confirmPassword",
       type: "password",
       placeholder: "비밀번호 확인(6 ~15자 이상)",
       required: true,
-      onChange: (e) => setConfirmPassword(e.target.value),
+      onChange: handleConfirmPasswordChange,
     },
     {
       name: "nickname",
       type: "text",
       placeholder: "닉네임",
       required: true,
-      onChange: (e) => setNickname(e.target.value),
+      onChange: handleNicknameChange,
     },
   ];
   const isEmailValid = (email) => {
@@ -85,69 +107,39 @@ const SignUpPage = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(e);
     e.preventDefault();
-    const formData = { email, nickname, password, confirmPassword };
+    // if (email === "" || password === "" || confirmPassword === "" || nickname === "") {
+    //   alert("모든 필드를 채워주세요!");
+    //   return;
+    // }
 
     try {
-      // if (!response || !response.data) {
-      //   console.error("Response or response data is undefined");
-      //   return;
-      // }
-      // if (!isEmailValid(email)) {
-      //   alert("유효하지 않은 이메일 형식입니다.");
-      //   return;
-      // }
-
-      // if (!isNicknameValid(nickname)) {
-      //   alert("닉네임은 5자 이상 12자 이하로 입력해주세요.");
-      //   return;
-      // }
-
-      // if (!isPasswordValid(password)) {
-      //   alert("비밀번호는 영문 소문자와 숫자를 포함한 6~15자리로 입력해주세요.");
-      //   return;
-      // }
-
-      // if (password !== confirmPassword) {
-      //   alert("비밀번호와 확인 비밀번호가 일치하지 않습니다.");
-      //   return;
-      // }
-
-      // if (await isEmailDuplicate(email)) {
-      //   alert("이미 가입된 이메일입니다.");
-      //   return;
-      // }
-      const formData = {
+      const sendData = {
         userEmail: email,
         userPassword: password,
         nickname: nickname,
         // emoji: "🦔", // I'm not sure where this comes from
       };
-      console.log(formData);
-      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/signup`, formData);
+      console.log(sendData);
+
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/signup`, sendData);
       console.log(response);
 
       if (response.status === 200) {
-        if (response.data) {
-          const token = response.data.token;
-          localStorage.setItem("accessToken", token);
-          alert("회원가입 성공!");
-          navigate("/login");
-          console.log(response);
-        }
+        const token = response.data.token;
+        localStorage.setItem("accessToken", token);
+        alert("회원가입 성공!");
+        navigate("/login");
       }
     } catch (error) {
-      console.log(error.response.data.msg);
-      alert(error.response.data.msg);
+      console.log(error);
+      // alert(error.response.data.msg);
     }
   };
 
   return (
     <Container>
       <form action="" onSubmit={handleSubmit}>
-        {/* <button>버튼</button> */}
-
         <SignUpContainer onSubmit={handleSubmit}>
           <SignUpHeader>
             <a className="Sign-logo" href="/">
@@ -156,7 +148,7 @@ const SignUpPage = () => {
           </SignUpHeader>
           <SignUpInputContainer>
             <div className="InputDiv">
-              <InputContainer fields={fields} onSubmit={handleSubmit} />
+              <InputContainer fields={fields} onChange={handleInputChange} onSubmit={handleSubmit} />
             </div>
           </SignUpInputContainer>
           {/* <div className="EmojiPickerDiv"> */}
@@ -170,7 +162,7 @@ const SignUpPage = () => {
 
             <div className="checkbox">
               <input type="checkbox" id="check-all-2" name="all" />
-              <span className="InputTitle">클론 코딩 프로젝트에 오신걸 환영합니다.!</span>
+              <span className="InputTitle">클론 코딩 프로젝트에 오신걸 환영합니다!</span>
               <a
                 className="inputLink"
                 href="https://newneek.notion.site/1e9ac1561fdb44109e2b154cf3b6a769"
@@ -184,9 +176,6 @@ const SignUpPage = () => {
           <SignUpButton>
             <Button size="xl" theme="SignUpBtn" type="submit">
               회원가입
-            </Button>
-            <Button size="md" theme="moreBtn" type="submit">
-              더보기
             </Button>
           </SignUpButton>
         </SignUpContainer>
