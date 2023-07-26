@@ -60,7 +60,6 @@ const InputContainer = ({ fields, onChange, onSubmit }) => {
           className={field.className}
         />
       ))}
-      <button onClick={handleSubmit}>Submit</button>
       {passwordError && <p>{passwordError}</p>}
     </div>
   );
