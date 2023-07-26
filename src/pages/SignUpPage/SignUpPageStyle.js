@@ -84,7 +84,7 @@ export const SignUpInputContainer = styled.form`
 
 export const SignUpTerms = styled.div`
     padding: 0 0 1rem;
-    margin-top: 40px;
+    margin-top: 20px;
     transform: translateY(-10px);
 
 .checkboxDiv {
@@ -123,7 +123,7 @@ export const SignUpTerms = styled.div`
 
 export const SignUpButton = styled.div`
 
-    padding: 32px 0;
+    padding: 20px 0;
     margin: auto;
   
 .signUp-button {
@@ -144,6 +144,10 @@ export const SignUpButton = styled.div`
   position: relative;
   border-radius: 8px;
   color: #fff;
+}
+
+a {
+  text-align: center;
 }
 `;
 

@@ -19,6 +19,11 @@ const InputContainer = ({ fields, onChange, onSubmit }) => {
     }
 
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+
+    // 부모 컴포넌트에게 상태 변경 알리기
+    if (typeof onChange === "function") { // 여기를 수정했습니다.
+      onChange(name, value);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -30,14 +35,13 @@ const InputContainer = ({ fields, onChange, onSubmit }) => {
     }
 
     if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}/.test(formData.password)) {
-      setPasswordError(
-        '비밀번호는 숫자, 소문자, 대문자를 포함하여 6~15자여야 합니다.'
-      );
+      setPasswordError('비밀번호는 숫자, 소문자, 대문자를 포함하여 6~15자여야 합니다.');
       return;
     }
-    console.log(formData);
 
-    onSubmit(formData);
+    if (typeof onSubmit === "function") { // 여기를 수정했습니다.
+      onSubmit(formData);
+    }
   };
 
   return (
@@ -51,11 +55,12 @@ const InputContainer = ({ fields, onChange, onSubmit }) => {
           onChange={handleChange}
           required={field.required}
           placeholder={field.placeholder}
-          error={error[field.name === 'password' ? 'passwordError' : error[field.name]]}
+          error={field.name === 'password' || field.name === 'confirmPassword' ? passwordError : error[field.name]}
           maxLength={field.maxLength}
           className={field.className}
         />
       ))}
+      {passwordError && <p>{passwordError}</p>}
     </div>
   );
 };
