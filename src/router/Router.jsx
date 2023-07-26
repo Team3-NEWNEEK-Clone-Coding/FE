@@ -8,9 +8,12 @@ import SearchPage from '../pages/searchPage/SearchPage';
 import Layout from '../layout/Layout';
 import NewsCategoryPage from '../pages/NewsCategoryPage';
 import SearchResultPage from '../pages/SearchResultPage';
+import ScrollToTop from '../utils/ScrollToTop';
+
 const Router = () => {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route path="/" element={<MainPage />} />
