@@ -29,8 +29,13 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
         {
             initialData: cachedData,
             onSuccess: (response) => {
+                if (currentPage === 1) {
+                    setNewsData(response.newsList);
+                } else {
+                    setNewsData([...cachedData, ...response.newsList]);
+                }
+                // setNewsData([...cachedData, ...response.newsList]);
                 setTotalPage(response.totalPages);
-                setNewsData([...cachedData, ...response.newsList]);
                 setTotalNewsCount(response.totalNewsCount);
             },
         }

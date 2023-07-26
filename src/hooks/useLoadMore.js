@@ -9,6 +9,7 @@ const useLoadMore = (fetchFunction) => {
     const [newsData, setNewsData] = useState([]);
     const queryClient = useQueryClient();
     const dispatch = useDispatch();
+
     const cachedData = useMemo(() => {
         const allCachedData = [];
         for (let pageIndex = 1; pageIndex <= currentPage; pageIndex++) {
@@ -21,7 +22,7 @@ const useLoadMore = (fetchFunction) => {
 
         return allCachedData;
     }, [queryClient, currentPage]);
-
+    console.log(currentPage);
     // const cachedData = getInitialData(currentPage);
     const { data, isLoading, isError, refetch } = useQuery(
         ['data', currentPage],
@@ -30,22 +31,25 @@ const useLoadMore = (fetchFunction) => {
             // enabled: !isFetching,
             initialData: cachedData,
             onSuccess: (response) => {
+                if (currentPage === 1) {
+                    setNewsData(response.newsList);
+                } else {
+                    setNewsData([...cachedData, ...response.newsList]);
+                }
                 setTotalPage(response.totalPages);
-                setNewsData([...cachedData, ...response.newsList]);
                 dispatch(subscriberSub(response.subscriberCount));
             },
         }
     );
 
-    useEffect(() => {
-        // if (data) {
-        //     setIsFetching(false);
-        // }
-    }, [data]);
-    console.log(cachedData);
+    // useEffect(() => {
+    //     if (data) {
+    //         setNewsData(data.newsList);
+    //     }
+    // }, []);
+
     const handleLoadMore = () => {
         setCurrentPage((prevPage) => prevPage + 1);
-        // setIsFetching(true);
     };
 
     return {
