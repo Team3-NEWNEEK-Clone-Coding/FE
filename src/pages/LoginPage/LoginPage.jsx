@@ -70,6 +70,7 @@ const LoginPage = () => {
         const token = response.headers.authorization; // 서버에서 토큰을 어떤 필드로 보내는지에 따라 수정해야 할 수도 있습니다.
         localStorage.setItem("accessToken", token);
         console.log("로그인 성공!");
+        console.log(token);
         axios
           .get(`${process.env.REACT_APP_SERVER_URL}/api/user`, {
             headers: {
