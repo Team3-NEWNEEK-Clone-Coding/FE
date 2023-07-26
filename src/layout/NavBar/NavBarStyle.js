@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { COLOR } from '../../assets/colors';
 export const NavStyle = styled.nav`
     width: 100%;
-    /* height: 50px; */
     background-color: #fff;
     border-top: 1px solid ${COLOR.black};
     border-bottom: 1px solid ${COLOR.black};
@@ -20,9 +19,15 @@ export const CategoryList = styled.ul`
     white-space: nowrap;
     overflow: overlay;
     li {
-        padding: 1.5rem 0;
         margin: 0 12px;
         border-bottom: 3px solid #fff;
+        a {
+            display: block;
+            width: 100%;
+            padding: 1.5rem 0;
+            /* height: 100%; */
+            cursor: pointer;
+        }
         &:hover {
             color: ${COLOR.orange};
             border-bottom: 3px solid ${COLOR.black};
