@@ -12,22 +12,18 @@ const NavBar = ({ categoryIdx }) => {
     return (
         <NavStyle>
             <CategoryList>
-                <Link to={'/'}>
-                    <li className={activeStyle === 'all' ? `active` : ''}>전체</li>
-                </Link>
+                <li className={activeStyle === 'all' ? `active` : ''}>
+                    <Link to={'/'}>전체</Link>
+                </li>
                 {categorys.map((cate, idx) => {
                     const Emoji = CateEmoji[cate.emoji];
                     return (
-                        <Link
-                            to={`/tag/${cate.tag}`}
-                            key={cate.tag}
-                            onClick={() => categoryOnClick(idx)}
-                        >
-                            <li className={activeStyle === idx ? `active` : ''}>
+                        <li className={activeStyle === idx ? `active` : ''} key={cate.tag}>
+                            <Link to={`/tag/${cate.tag}`} onClick={() => categoryOnClick(idx)}>
                                 {Emoji && <Emoji />}
                                 {cate.tag}
-                            </li>
-                        </Link>
+                            </Link>
+                        </li>
                     );
                 })}
             </CategoryList>
