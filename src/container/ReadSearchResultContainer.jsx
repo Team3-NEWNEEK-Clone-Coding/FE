@@ -6,6 +6,8 @@ import { searchNews } from '../api/news';
 import { PageTitle, ButtonBox, SearchContentWrap } from '../components/newsPage/NewsPageStyle';
 import useFetchNews from '../hooks/useFetchNews';
 import SearchOptionList from '../components/SearchOptionList';
+import LoadingPage from '../pages/LoginPage/LoginPage';
+
 const mockDate = [
     {
         title: '우리가 알던 중국 경제가 아냐',
@@ -50,7 +52,7 @@ const CategoryReadContainer = () => {
     const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage, totalNewsCount } =
         useFetchNews('searchNews', searchNews, keyword);
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <LoadingPage />;
     if (isError) return <div>Error fetching data</div>;
 
     return (
@@ -63,7 +65,11 @@ const CategoryReadContainer = () => {
                         </PageTitle>
                         <span className="status">🦔고슴이 : {totalNewsCount}개 찾았슴!</span>
                         <div className="sorting">최신순</div>
-                        <NewsCard newsData={newsData} $borderTop />
+                        {isLoading ? (
+                            <div>Loading...</div>
+                        ) : (
+                            <NewsCard newsData={newsData} $borderTop />
+                        )}
                         {currentPage !== totalPage && (
                             <ButtonBox>
                                 <Button size="md" theme="moreBtn" onClickEvent={handleLoadMore}>
