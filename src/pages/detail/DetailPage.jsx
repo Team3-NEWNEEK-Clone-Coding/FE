@@ -55,7 +55,7 @@ const DetailPage = () => {
             </div>
             <PostHashtag className="post-hashtag">
                 {tags.map((tag, index) => (
-                    <a key={index} className="post-hashtag-item" href={`/search/posts?keyword=${tag}`}>#{tag}</a>
+                    <a key={index} className="post-hashtag-item" href={`/search/${tag}`}>#{tag}</a>
                 ))}
             </PostHashtag>
             <DetailPageLike post={post} likeButtonHandler={likeButtonHandler} />
