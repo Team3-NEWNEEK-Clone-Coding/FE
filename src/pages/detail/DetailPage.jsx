@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { getNewsDetail, postUpdateLike } from '../../api/newsDetail';
+import { useQuery } from 'react-query';
+import { getNewsDetail } from '../../api/newsDetail';
 import { PostHead, PostContainer, PostHashtag } from './DetailPageStyle';
 import LoadingPage from '../../components/loadingPage/LoadingPage';
 import ProgressBar from '../../components/progressBar/ProgressBar';
@@ -12,18 +12,6 @@ import HomeBanner from '../../components/homeBanner/HomeBanner';
 const DetailPage = () => {
     const { id } = useParams();
     const { data: post, isLoading, isError } = useQuery(['post', id], () => getNewsDetail(id));
-    const queryClient = useQueryClient();
-    const mutation = useMutation(postUpdateLike, {
-        onSuccess: (data) => {
-            queryClient.setQueriesData(['post', id], (old) => ({
-                ...old,
-                heart: data.newsHeart,
-            }));
-        },
-    });
-    const likeButtonHandler = () => {
-        mutation.mutate(id);
-    };
 
     if (isLoading) {
         return <LoadingPage />;
@@ -61,7 +49,7 @@ const DetailPage = () => {
                     </a>
                 ))}
             </PostHashtag>
-            <DetailPageLike post={post} likeButtonHandler={likeButtonHandler} />
+            <DetailPageLike post={post} id={id} />
             <DetailPageSubscribe />
             <HomeBanner />
         </section>
