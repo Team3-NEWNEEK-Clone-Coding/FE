@@ -1,7 +1,7 @@
 import React from "react";
 
 const EmojiPicker = ({ onEmojiSelect }) => {
-  const emojis = ["🦔", "🍊", "🇰🇷", "💣", "🔥", "😀", "🌞", "🐻", "🐶", "👶"]; // 선택 가능한 이모지들
+  const emojis = ["🦔", "🍊", "🇰🇷", "💣", "🔥", "😀", "🌞", "🐻", "🐶", "👶", "😎", "🤓"]; // 선택 가능한 이모지들
 
   const handleSelectChange = (event) => {
     onEmojiSelect(event.target.value);
