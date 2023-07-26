@@ -8,7 +8,6 @@ const CreateSubscriberContainer = () => {
     const [nickName, setNickName] = useState('');
     const [checkbox, setCheckbox] = useState(false);
     const [checkbox2, setCheckbox2] = useState(false);
-
     const [emailError, setEmailError] = useState('');
     const [nickNameError, setNickNameError] = useState('');
     const [checkboxError, setCheckboxError] = useState('');

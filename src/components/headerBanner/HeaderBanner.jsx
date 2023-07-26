@@ -3,7 +3,6 @@ import { HeaderBannerStyle, IntroContentBox, NewsLetterForm } from './HeaderBann
 import Input from '../common/input/Input';
 import CheckBoxInput from '../common/checkBoxInput/CheckBoxInput';
 import Button from '../common/button/Button';
-
 const HeaderBanner = ({
     onSubmitEvent,
     email,

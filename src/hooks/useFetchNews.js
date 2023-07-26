@@ -19,7 +19,6 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
                 allCachedData.push(...dataList);
             }
         }
-
         return allCachedData;
     }, [queryClient, currentPage]);
 
