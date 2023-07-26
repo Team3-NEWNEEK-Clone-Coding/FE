@@ -40,7 +40,7 @@ const DetailPage = () => {
             <div className="post-scrollwrap">
                 <PostHead className="post-head">
                     <ProgressBar title={post.title} />
-                    <a className="post-head-runninghead" href="/tag/domestic-issue">
+                    <a className="post-head-runninghead" href={`/tag/${post.category}`}>
                         {post.category}
                     </a>
                     <h2 className="post-head-headline">{post.title}</h2>

@@ -51,7 +51,7 @@ const CategoryReadContainer = () => {
     const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage, totalNewsCount } =
         useFetchNews('searchNews', searchNews, keyword);
 
-    if (isLoading) return <LoadingPage />;
+    if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error fetching data</div>;
 
     return (
@@ -64,11 +64,7 @@ const CategoryReadContainer = () => {
                         </PageTitle>
                         <span className="status">🦔고슴이 : {totalNewsCount}개 찾았슴!</span>
                         <div className="sorting">최신순</div>
-                        {isLoading ? (
-                            <div>Loading...</div>
-                        ) : (
-                            <NewsCard newsData={newsData} $borderTop />
-                        )}
+                        <NewsCard newsData={newsData} $borderTop />
                         {currentPage !== totalPage && (
                             <ButtonBox>
                                 <Button size="md" theme="moreBtn" onClickEvent={handleLoadMore}>

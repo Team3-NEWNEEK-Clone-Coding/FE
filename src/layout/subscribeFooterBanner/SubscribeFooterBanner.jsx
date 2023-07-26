@@ -2,6 +2,7 @@ import React from 'react';
 import { FooterBannerCtaArrow } from '../homeFemaleFooterBanner/HomeFemaleFooterBannerStyle';
 import { FooterBannerAside, FooterStatics } from './SubscribeFooterBannerStyle';
 import { useSelector } from 'react-redux';
+import { subscriber } from '../../redux/modules/subscriberSlice';
 const SubscribeFooterBanner = () => {
     const { subscriber } = useSelector((state) => {
         return state.subscriber;

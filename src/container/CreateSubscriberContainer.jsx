@@ -3,6 +3,7 @@ import HeaderBanner from '../components/headerBanner/HeaderBanner';
 import { postSub } from '../api/sub';
 import { useMutation } from 'react-query';
 import { useSelector } from 'react-redux';
+import { subscriber } from '../redux/modules/subscriberSlice';
 const CreateSubscriberContainer = () => {
     const [email, setEmail] = useState('');
     const [nickName, setNickName] = useState('');
@@ -90,7 +91,6 @@ const CreateSubscriberContainer = () => {
             onChangeNickNameHandler={onChangeNickNameHandler}
             onChangeCheckBoxHandler={onChangeCheckBoxHandler}
             onChangeCheckBoxHandler2={onChangeCheckBoxHandler2}
-            subscriber={subscriber}
         />
     );
 };
