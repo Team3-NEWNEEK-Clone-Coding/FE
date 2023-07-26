@@ -4,6 +4,7 @@ import HomeBanner from '../components/homeBanner/HomeBanner';
 import MainNewsReadContainer from '../container/ReadAllNewsContainer';
 import HomeFemaleFooterBanner from '../layout/homeFemaleFooterBanner/HomeFemaleFooterBanner';
 import CreateSubscriberContainer from '../container/CreateSubscriberContainer';
+import { COLOR } from '../assets/colors';
 const MainPage = () => {
     return (
         <>
@@ -12,7 +13,7 @@ const MainPage = () => {
             <div className="center">
                 <MainNewsReadContainer />
             </div>
-            <HomeBanner />
+            <HomeBanner $margin={`14rem 0 8rem`} $borderBottom={`2px solid ${COLOR.black}`} />
             <HomeFemaleFooterBanner />
         </>
     );
