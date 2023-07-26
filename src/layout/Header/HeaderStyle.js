@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { COLOR } from '../../assets/colors';
+import { Link } from 'react-router-dom';
 export const HeaderStyle = styled.header`
     width: 100%;
     padding: 40px 60px 36px;
@@ -27,7 +28,7 @@ export const HeaderIconBox = styled.div`
     display: flex;
 `;
 
-export const HaederButton = styled.button`
+export const HaederButton = styled(Link)`
     width: 48px;
     height: 48px;
     border: 1px solid ${COLOR.black};
