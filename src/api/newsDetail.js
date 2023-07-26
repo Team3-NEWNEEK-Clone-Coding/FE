@@ -10,8 +10,15 @@ export const getNewsDetail = async (id) => {
 }
 
 export const postUpdateLike = async (id) => {
+    const token = localStorage.getItem("accessToken");
+    //console.log(token);
     try {
-        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/news/heart/${id}`);
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/news/heart/${id}`, {}, {
+            headers: {
+                Authorization: token
+            }
+        });
+        console.log("response.data", response.data);
         return response.data;
     } catch (error) {
         console.error(error);

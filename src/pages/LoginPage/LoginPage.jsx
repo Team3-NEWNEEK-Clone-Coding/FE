@@ -69,22 +69,22 @@ const LoginPage = () => {
       if (response.status === 200) {
         const token = response.headers.authorization; // 서버에서 토큰을 어떤 필드로 보내는지에 따라 수정해야 할 수도 있습니다.
         localStorage.setItem("accessToken", token);
-        console.log("로그인 성공!");
-        console.log(token);
-        axios
-          .get(`${process.env.REACT_APP_SERVER_URL}/api/user`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((response) => {
-            console.log(token); // 로그인한 사용자의 정보를 콘솔에 출력
-            navigate("/"); // 로그인이 성공하고 사용자 정보를 받아온 후에 화면 전환
-          })
-          .catch((error) => {
-            console.log(error);
-            alert("사용자 정보를 가져오는 데 실패했습니다.");
-          });
+        alert("로그인 성공!");
+        navigate("/");
+        // axios
+        //   .get(`${process.env.REACT_APP_SERVER_URL}/api/user`, {
+        //     headers: {
+        //       Authorization: `Bearer ${token}`,
+        //     },
+        //   })
+        //   .then((response) => {
+        //     console.log(token); // 로그인한 사용자의 정보를 콘솔에 출력
+        //     navigate("/"); // 로그인이 성공하고 사용자 정보를 받아온 후에 화면 전환
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //     alert("사용자 정보를 가져오는 데 실패했습니다.");
+        //   });
       }
     } catch (error) {
       alert("이메일과 비밀번호를 다시 확인 해주세요.");
