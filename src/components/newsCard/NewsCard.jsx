@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import CateEmoji from '../../assets/emojis/categoryEmojis';
 import categorys from '../../assets/categoryInfo';
 import { NewsList, NewsCardStyle, NewsCardImgWrap, NewsCardBody } from './NewsStyle';
-
+import { Link } from 'react-router-dom';
 const NewsCard = ({ newsData, $borderTop }) => {
     return (
         <NewsList>

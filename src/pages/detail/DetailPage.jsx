@@ -12,7 +12,6 @@ import HomeBanner from '../../components/homeBanner/HomeBanner';
 const DetailPage = () => {
     const { id } = useParams();
     const { data: post, isLoading, isError } = useQuery(['post', id], () => getNewsDetail(id));
-
     const queryClient = useQueryClient();
     const mutation = useMutation(postUpdateLike, {
         onSuccess: (data) => {
@@ -24,7 +23,7 @@ const DetailPage = () => {
     });
     const likeButtonHandler = () => {
         mutation.mutate(id);
-    }
+    };
 
     if (isLoading) {
         return <LoadingPage />;
@@ -41,7 +40,9 @@ const DetailPage = () => {
             <div className="post-scrollwrap">
                 <PostHead className="post-head">
                     <ProgressBar title={post.title} />
-                    <a className="post-head-runninghead" href={`/tag/${post.category}`}>{post.category}</a>
+                    <a className="post-head-runninghead" href={`/tag/${post.category}`}>
+                        {post.category}
+                    </a>
                     <h2 className="post-head-headline">{post.title}</h2>
                     <time className="post-head-date">{post.date}</time>
                     <i className="icon-bullet"></i>
@@ -55,13 +56,15 @@ const DetailPage = () => {
             </div>
             <PostHashtag className="post-hashtag">
                 {tags.map((tag, index) => (
-                    <a key={index} className="post-hashtag-item" href={`/search/${tag}`}>#{tag}</a>
+                    <a key={index} className="post-hashtag-item" href={`/search/${tag}`}>
+                        #{tag}
+                    </a>
                 ))}
             </PostHashtag>
             <DetailPageLike post={post} likeButtonHandler={likeButtonHandler} />
             <DetailPageSubscribe />
             <HomeBanner />
-        </section >
+        </section>
     );
 };
 

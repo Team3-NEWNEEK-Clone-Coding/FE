@@ -6,6 +6,7 @@ import { searchNews } from '../api/news';
 import { PageTitle, ButtonBox, SearchContentWrap } from '../components/newsPage/NewsPageStyle';
 import useFetchNews from '../hooks/useFetchNews';
 import SearchOptionList from '../components/SearchOptionList';
+import LoadingPage from '../pages/LoginPage/LoginPage';
 const mockDate = [
     {
         title: '우리가 알던 중국 경제가 아냐',

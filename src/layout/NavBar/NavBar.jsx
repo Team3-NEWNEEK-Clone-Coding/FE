@@ -3,7 +3,6 @@ import { NavStyle, CategoryList } from './NavBarStyle';
 import CateEmoji from '../../assets/emojis/categoryEmojis';
 import categorys from '../../assets/categoryInfo';
 import { Link } from 'react-router-dom';
-
 const NavBar = ({ categoryIdx }) => {
     const [activeStyle, setActiveStyle] = useState(categoryIdx !== 'all' ? categoryIdx : 'all');
     const categoryOnClick = (idx) => {

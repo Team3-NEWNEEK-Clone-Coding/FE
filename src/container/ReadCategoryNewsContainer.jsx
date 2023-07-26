@@ -29,7 +29,6 @@ const CategoryReadContainer = () => {
     const cate = categorys.find((cate) => cate.tag === category);
     const cateEmojiname = cate.emoji;
     const Emoji = CateEmoji[cateEmojiname];
-
     const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage } = useFetchNews(
         'cateNews',
         getCategoryNews,

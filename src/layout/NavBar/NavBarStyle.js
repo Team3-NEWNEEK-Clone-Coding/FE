@@ -27,9 +27,6 @@ export const CategoryList = styled.ul`
             color: ${COLOR.orange};
             border-bottom: 3px solid ${COLOR.black};
         }
-        /* &.all-cate:hover {
-            border-bottom: 3px solid #fff;
-        } */
         &.active {
             border-bottom: 3px solid ${COLOR.black};
         }
