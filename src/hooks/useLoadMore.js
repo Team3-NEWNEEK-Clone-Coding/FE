@@ -19,7 +19,6 @@ const useLoadMore = (fetchFunction) => {
                 allCachedData.push(...dataList);
             }
         }
-
         return allCachedData;
     }, [queryClient, currentPage]);
     console.log(currentPage);

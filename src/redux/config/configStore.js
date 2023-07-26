@@ -5,5 +5,4 @@ const store = configureStore({
         subscriber,
     },
 });
-
 export default store;

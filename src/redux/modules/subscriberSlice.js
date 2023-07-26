@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 const initialState = {
     subscriber: 0,
 };
-
 const subscriberSlice = createSlice({
     name: 'subscriber',
     initialState,
@@ -13,7 +11,5 @@ const subscriberSlice = createSlice({
         },
     },
 });
-
 export const { subscriberSub } = subscriberSlice.actions;
-
 export default subscriberSlice.reducer;

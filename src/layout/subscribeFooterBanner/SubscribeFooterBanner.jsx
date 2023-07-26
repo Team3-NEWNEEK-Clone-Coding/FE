@@ -6,7 +6,6 @@ const SubscribeFooterBanner = () => {
     const { subscriber } = useSelector((state) => {
         return state.subscriber;
     });
-
     return (
         <FooterBannerAside>
             <FooterStatics href="/">
