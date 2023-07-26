@@ -17,7 +17,6 @@ const HeaderBanner = ({
     onChangeNickNameHandler,
     onChangeCheckBoxHandler,
     onChangeCheckBoxHandler2,
-    subscriber,
 }) => {
     return (
         <HeaderBannerStyle>
@@ -32,8 +31,7 @@ const HeaderBanner = ({
             <IntroContentBox>
                 <div className="intro-content-inner">
                     <p>
-                        ✨지금 <span className="font-bold">{subscriber}명</span>이 뉴닉을 읽고
-                        있어요
+                        ✨지금 <span className="font-bold">{`887,074`}명</span>이 뉴닉을 읽고 있어요
                     </p>
                     <p className="intro-text">
                         세상 돌아가는 소식, 알고는 싶지만 신문 볼 새 없이 바쁜 게 우리 탓은

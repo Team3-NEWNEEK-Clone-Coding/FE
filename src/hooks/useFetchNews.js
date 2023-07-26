@@ -33,7 +33,6 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
                 } else {
                     setNewsData([...cachedData, ...response.newsList]);
                 }
-                // setNewsData([...cachedData, ...response.newsList]);
                 setTotalPage(response.totalPages);
                 setTotalNewsCount(response.totalNewsCount);
             },
@@ -53,3 +52,11 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
     return { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage, totalNewsCount };
 };
 export default useFetchNews;
+
+
+
+
+
+
+
+
