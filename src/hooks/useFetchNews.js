@@ -7,7 +7,7 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [newsData, setNewsData] = useState(null);
     const [totalPage, setTotalPage] = useState(1);
-
+    const [totalNewsCount, setTotalNewsCount] = useState(1);
     const queryClient = useQueryClient();
 
     const getInitialData = useCallback(
@@ -26,7 +26,7 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
     );
 
     const cachedData = getInitialData(currentPage, dependency);
-    console.log(cachedData);
+
     const { isLoading, isError, refetch } = useQuery(
         [queryKey, currentPage, dependency], // dependency를 추가합니다.
         () => fetchFunction({ currentPage, dependency }),
@@ -37,10 +37,11 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
                     prevData ? [...prevData, ...response.newsList] : response.newsList
                 );
                 setTotalPage(response.totalPages);
+                setTotalNewsCount(response.totalNewsCount);
             },
         }
     );
-    console.log(newsData);
+
     useEffect(() => {
         setCurrentPage(1);
         setNewsData([]);
@@ -51,6 +52,6 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
         setCurrentPage((prevPage) => prevPage + 1);
     };
 
-    return { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage };
+    return { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage, totalNewsCount };
 };
 export default useFetchNews;
