@@ -4,10 +4,14 @@ import { Link } from 'react-router-dom';
 export const HeaderStyle = styled.header`
     width: 100%;
     padding: 40px 60px 36px;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    position: relative;
+    .header-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        position: relative;
+    }
     .logo-img-wrap {
         position: absolute;
         top: 50%;
@@ -39,11 +43,9 @@ export const HeaderButton = styled(Link)`
     cursor: pointer;
     &:nth-child(1) {
         border-right: none;
-        
     }
     &:nth-child(3) {
         border-left: none;
-        
     }
     svg {
         width: 24px;
