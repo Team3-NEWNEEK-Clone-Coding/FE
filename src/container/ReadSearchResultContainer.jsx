@@ -6,14 +6,17 @@ import { searchNews } from '../api/news';
 import { PageTitle, ButtonBox, SearchContentWrap } from '../components/newsPage/NewsPageStyle';
 import useFetchNews from '../hooks/useFetchNews';
 import SearchOptionList from '../components/SearchOptionList';
-import LoadingPage from '../pages/LoginPage/LoginPage';
+import LoadingPage from '../components/loadingPage/LoadingPage';
+import useDelay from '../hooks/useDelay';
 
 const CategoryReadContainer = () => {
     const { keyword } = useParams();
     const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage, totalNewsCount } =
         useFetchNews('searchNews', searchNews, keyword);
-
-    if (isLoading) return <div>...loading</div>;
+    const { isDelayOver } = useDelay();
+    if (!isDelayOver || isLoading) {
+        return <LoadingPage />;
+    }
     if (isError) return <div>Error fetching data</div>;
 
     return (
