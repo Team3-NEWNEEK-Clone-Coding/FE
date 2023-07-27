@@ -18,12 +18,10 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
 
   const handleEmailChange = (e) => {
-    console.log("Email input: ", e.target.value);
     setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
-    console.log("Password input: ", e.target.value);
     setPassword(e.target.value);
   };
 
@@ -63,13 +61,10 @@ const LoginPage = () => {
       console.log(sendData);
       // 로그인 요청 보내기
       const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/login`, sendData);
-      console.log(response);
 
       // 로그인 성공한 경우 JWT 토큰을 localStorage에 저장
       if (response.status === 200) {
         const token = response.headers.authorization; // 서버에서 토큰을 어떤 필드로 보내는지에 따라 수정해야 할 수도 있습니다.
-
-        console.log(response.data);
 
         localStorage.setItem("accessToken", token);
         alert("로그인 되었습니다.");
