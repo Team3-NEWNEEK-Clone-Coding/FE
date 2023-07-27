@@ -8,6 +8,12 @@ const Header = ({ ...restProps }) => {
   const nav = useNavigate();
   const { selectedEmoji } = useContext(EmojiContext); // 이모지 컨텍스트에서 선택한 이모지 가져오기
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isAuth = localStorage.getItem("accessToken");
+  useEffect(() => {
+    if (isAuth) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <HeaderStyle {...restProps}>
