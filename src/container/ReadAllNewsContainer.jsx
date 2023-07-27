@@ -4,6 +4,8 @@ import Button from '../components/common/button/Button';
 import { ButtonBox } from '../components/newsPage/NewsPageStyle';
 import { getAllNews } from '../api/news';
 import useLoadMore from '../hooks/useLoadMore';
+import LoadingPage from '../components/loadingPage/LoadingPage';
+import useDelay from '../hooks/useDelay';
 
 const MainNewsReadContainer = () => {
     const {
@@ -15,8 +17,11 @@ const MainNewsReadContainer = () => {
         handleLoadMore,
         isFetching,
     } = useLoadMore(getAllNews);
+    const { isDelayOver } = useDelay();
 
-    if (isLoading) return <div>Loading...</div>;
+    if (!isDelayOver || isLoading) {
+        return <LoadingPage />;
+    }
     if (isError) return <div>Error fetching data</div>;
 
     return (
