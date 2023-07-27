@@ -9,15 +9,17 @@
 
 ### 배포
 
-📎[서비스 링크](https://fe-newneek.vercel.app/)
-🎬[시연 영상](https://www.youtube.com/watch?v=jdSk7j4KiFE&feature=youtu.be)
+📎 [서비스 링크](https://fe-newneek.vercel.app/) <br />
+
+🎬 [시연 영상](https://www.youtube.com/watch?v=jdSk7j4KiFE&feature=youtu.be)
+
 ---
 ### 기획 / 설계
 
-📘[S.A 링크](https://stealth-screw-ec8.notion.site/Team3-NEWNEEK-Clone-Coding-ba274ad8be504cbfba203b9848809228?pvs=4)
+📘 [S.A 링크](https://stealth-screw-ec8.notion.site/Team3-NEWNEEK-Clone-Coding-ba274ad8be504cbfba203b9848809228?pvs=4)
 <br />
 <br />
-📕[팀 일정관리 - 노션](https://stealth-screw-ec8.notion.site/Frontend-2db5a4601ab2411ca44ce58eecb42142?pvs=4)
+📕 [팀 일정관리 - 노션](https://stealth-screw-ec8.notion.site/Frontend-2db5a4601ab2411ca44ce58eecb42142?pvs=4)
 
 
 
