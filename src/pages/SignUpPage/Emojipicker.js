@@ -1,4 +1,3 @@
-// EmojiPicker.js
 import React, { useContext } from 'react';
 import EmojiContext from './EmojiContext';
 

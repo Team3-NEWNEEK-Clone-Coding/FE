@@ -35,23 +35,18 @@ const SignUpPage = () => {
   };
 
   const handleEmailChange = (e) => {
-    console.log("Email input: ", e.target.value);
     setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
-    console.log("Password input: ", e.target.value);
     setPassword(e.target.value);
   };
 
   const handleConfirmPasswordChange = (e) => {
-    console.log("Confirm password input: ", e.target.value);
-
     setConfirmPassword(e.target.value);
   };
 
   const handleNicknameChange = (e) => {
-    console.log("Nickname input: ", e.target.value);
     setNickname(e.target.value);
   };
 
@@ -134,19 +129,16 @@ const SignUpPage = () => {
         nickname: nickname,
         emoji: selectedEmoji,
       };
-      console.log(sendData);
 
       const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/auth/signup`, sendData);
-      console.log(response);
 
       if (response.status === 200) {
         const token = response.headers.authorization;
-        localStorage.setItem("accessToken", token);
+        // localStorage.setItem("accessToken", token);
         alert("회원가입 성공!");
-        navigate("/");
+        navigate("/login");
       }
     } catch (error) {
-      console.log(error);
       alert("이메일 및 비밀번호를 확인해주세요");
     }
   };
@@ -167,7 +159,7 @@ const SignUpPage = () => {
           </SignUpInputContainer>
           <div className="EmojiPickerDiv">
             <StyledDiv>
-              <EmojiPicker />
+              <EmojiPicker onChange={handleSelectChange} />
             </StyledDiv>
           </div>
           <SignUpTerms>
