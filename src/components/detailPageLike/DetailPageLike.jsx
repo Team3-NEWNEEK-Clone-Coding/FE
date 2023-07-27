@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
+import { postUpdateLike } from "../../api/newsDetail";
 import { PostFoot, PostFootReaction, PostShare } from "./DetailPageLikeStyle";
 
-const DetailPageLike = ({ post, likeButtonHandler }) => {
+const DetailPageLike = ({ post, id }) => {
+  const [isLiked, setIsLiked] = useState(post.isNewsHeart);
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation(postUpdateLike, {
+    onSuccess: (data) => {
+      queryClient.setQueriesData(["post", id], (old) => ({
+        ...old,
+        heart: data.newsHeart,
+      }));
+
+      setIsLiked(data.isNewsHeart);
+    },
+  });
+
+  const likeButtonHandler = () => {
+    mutation.mutate(id);
+  };
+
+  const likeButtonClass = isLiked ? "liked" : "unliked";
+
   const facebookShareHandler = () => {
     const url = `https://www.facebook.com/sharer/sharer.php?u=newneek.co`;
     window.open(url, "newwindow", "width=600, height=400");
@@ -19,8 +41,10 @@ const DetailPageLike = ({ post, likeButtonHandler }) => {
           <span role="img" aria-label="">
             🧡
           </span>
-          좋았슴
-          <b className="post-foot-reaction-button-count">{post.heart}</b>
+          <p className={likeButtonClass}>
+            좋았슴
+            <b className={`post-foot-reaction-button-count ${likeButtonClass}`}>{post.heart}</b>
+          </p>
         </button>
       </PostFootReaction>
       <PostShare className="post-share">
