@@ -50,7 +50,7 @@ const CategoryReadContainer = () => {
                 {currentPage !== totalPage && (
                     <ButtonBox>
                         <Button size="md" theme="moreBtn" onClickEvent={handleLoadMore}>
-                            더보기
+                            {!isLoading ? '더보기' : '로딩 중'}
                         </Button>
                     </ButtonBox>
                 )}
