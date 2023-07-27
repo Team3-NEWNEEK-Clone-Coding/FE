@@ -28,7 +28,7 @@ export const HeaderIconBox = styled.div`
     display: flex;
 `;
 
-export const HaederButton = styled(Link)`
+export const HeaderButton = styled(Link)`
     width: 48px;
     height: 48px;
     border: 1px solid ${COLOR.black};
@@ -39,6 +39,11 @@ export const HaederButton = styled(Link)`
     cursor: pointer;
     &:nth-child(1) {
         border-right: none;
+        
+    }
+    &:nth-child(3) {
+        border-left: none;
+        
     }
     svg {
         width: 24px;
