@@ -81,16 +81,43 @@ export const SignUpInputContainer = styled.form`
 }
 `;
 
+export const StyledDiv = styled.div`
+margin: 0;
+
+select {
+  font-weight: 400;
+  padding: 0;
+  width: 100%;
+  height: 45px;
+  font-size: 14px;
+  border: 1px solid black;
+  padding: 10px 40px 11px 1rem;
+
+  &:hover {
+  cursor: pointer;
+}
+}
+
+emoji {
+font-size: 100px;
+}
+
+
+`;
+
 
 export const SignUpTerms = styled.div`
-    padding: 0 0 1rem;
+
     margin-top: 20px;
     transform: translateY(-10px);
+
+  
 
 .checkboxDiv {
   display: block;
     padding: 0.5rem 0;
     position: relative;
+    
 
 }
 
@@ -104,7 +131,7 @@ export const SignUpTerms = styled.div`
 }
 
 .InputTitle {
-  margin: 0.5vh;
+  margin: 1vh;
   font-size: 15px;
 
 }
@@ -116,14 +143,20 @@ export const SignUpTerms = styled.div`
   font-weight: 600;
   color: #051619;
   position: absolute;
-  margin-top: 1vh;
+  margin-top: 5px;
   margin-left: 50px;
 }
+
+.checkbox {
+  padding-top: 10px;
+}
+
+
 `;
 
 export const SignUpButton = styled.div`
 
-    padding: 20px 0;
+    padding: 10px 0;
     margin: auto;
   
 .signUp-button {
@@ -148,6 +181,8 @@ export const SignUpButton = styled.div`
 
 a {
   text-align: center;
+
+  
 }
 `;
 

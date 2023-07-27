@@ -1,22 +1,24 @@
-import React from "react";
-import Emoji from "../../assets/emojis/userEmojis";
+// EmojiPicker.js
+import React, { useContext } from 'react';
+import EmojiContext from './EmojiContext';
 
+const EmojiPicker = () => {
+  const emojis = ["🦔", "🍊", "🇰🇷", "💣", "🔥", "😀", "🌞", "🐻", "🐶", "👶", "😎", "🤓", "🐼"];
+  const { setSelectedEmoji } = useContext(EmojiContext);
 
-const EmojiPicker = ({ onEmojiSelect }) => {
+  const handleSelectChange = (event) => {
+    setSelectedEmoji(event.target.value);
+  };
+
   return (
-    <div>
-      {Object.keys(Emoji).map((emojiName) => {
-        const EmojiComponent = Emoji[emojiName];
-        return (
-          <button
-            key={emojiName}
-            onClick={() => onEmojiSelect(emojiName)}
-          >
-            <EmojiComponent />
-          </button>
-        );
-      })}
-    </div>
+    <select onChange={handleSelectChange}>
+      <option value="">이모지를 선택해 주세요</option>
+      {emojis.map((emoji, index) => (
+        <option key={index} value={emoji}>
+          {emoji}
+        </option>
+      ))}
+    </select>
   );
 };
 

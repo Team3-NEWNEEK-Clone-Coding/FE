@@ -8,35 +8,24 @@ import Button from '../components/common/button/Button';
 import { PageTitle, ButtonBox } from '../components/newsPage/NewsPageStyle';
 import useFetchNews from '../hooks/useFetchNews';
 import { getCategoryNews } from '../api/news';
-const mockDate = [
-    {
-        title: '우리가 알던 중국 경제가 아냐',
-        img: '/imgs/img1.jpeg',
-        category: '경제',
-        date: '2023.07.21',
-    },
-    {
-        title: '우리가 알던 중국 경제가 아냐',
-        img: '/imgs/img1.jpeg',
-        category: '경제',
-        date: '2023.07.21',
-    },
-];
+import LoadingPage from '../components/loadingPage/LoadingPage';
+import useDelay from '../hooks/useDelay';
 
-//TODO : 카테고리 페이지 작업중이었음
 const CategoryReadContainer = () => {
     const { category } = useParams();
     const cate = categorys.find((cate) => cate.tag === category);
     const cateEmojiname = cate.emoji;
     const Emoji = CateEmoji[cateEmojiname];
-
     const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage } = useFetchNews(
         'cateNews',
         getCategoryNews,
         category
     );
+    const { isDelayOver } = useDelay();
 
-    if (isLoading) return <div>Loading...</div>;
+    if (!isDelayOver || isLoading) {
+        return <LoadingPage />;
+    }
     if (isError) return <div>Error fetching data</div>;
 
     return (
@@ -51,7 +40,7 @@ const CategoryReadContainer = () => {
                 {currentPage !== totalPage && (
                     <ButtonBox>
                         <Button size="md" theme="moreBtn" onClickEvent={handleLoadMore}>
-                            더보기
+                            {!isLoading ? '더보기' : '로딩 중'}
                         </Button>
                     </ButtonBox>
                 )}

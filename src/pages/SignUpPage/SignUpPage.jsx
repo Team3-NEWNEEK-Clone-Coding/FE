@@ -6,19 +6,33 @@ import {
   SignUpHeader,
   SignUpInputContainer,
   SignUpTerms,
+  StyledDiv,
 } from "./SignUpPageStyle";
 import Button from "../../components/common/button/Button";
 import InputContainer from "../../container/InputContainer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import EmojiPicker from "./Emojipicker";
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [nickname, setNickname] = useState("");
+  const [selectedEmoji, setSelectedEmoji] = useState(""); // 사용자가 선택한 이모지를 저장하는 상태
+  const [checkedItems, setCheckedItems] = useState({ check1: false, check2: false }); // Checkbox 상태를 추가합니다
 
   const navigate = useNavigate();
+
+  const handleChange = (event) => {
+    setCheckedItems({ ...checkedItems, [event.target.name]: event.target.checked });
+  };
+
+  const allChecked = Object.values(checkedItems).every((item) => item);
+
+  const handleSelectChange = (e) => {
+    setSelectedEmoji(e.target.value);
+  };
 
   const handleEmailChange = (e) => {
     console.log("Email input: ", e.target.value);
@@ -79,7 +93,7 @@ const SignUpPage = () => {
     },
   ];
   const isEmailValid = (email) => {
-    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     return emailRegex.test(email);
   };
 
@@ -88,7 +102,7 @@ const SignUpPage = () => {
   };
 
   const isPasswordValid = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d]{6,15}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*\d).{6,15}$/;
     return passwordRegex.test(password);
   };
 
@@ -108,17 +122,17 @@ const SignUpPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (email === "" || password === "" || confirmPassword === "" || nickname === "") {
-    //   alert("모든 필드를 채워주세요!");
-    //   return;
-    // }
+    if (email === "" || password === "" || confirmPassword === "" || nickname === "") {
+      alert("이메일, 비밀번호, 닉네임을 입력해주세요!");
+      return;
+    }
 
     try {
       const sendData = {
         userEmail: email,
         userPassword: password,
         nickname: nickname,
-        // emoji: "🦔", // I'm not sure where this comes from
+        emoji: selectedEmoji,
       };
       console.log(sendData);
 
@@ -126,14 +140,14 @@ const SignUpPage = () => {
       console.log(response);
 
       if (response.status === 200) {
-        const token = response.data.token;
+        const token = response.headers.authorization;
         localStorage.setItem("accessToken", token);
         alert("회원가입 성공!");
-        navigate("/login");
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
-      // alert(error.response.data.msg);
+      alert("이메일 및 비밀번호를 확인해주세요");
     }
   };
 
@@ -151,17 +165,19 @@ const SignUpPage = () => {
               <InputContainer fields={fields} onChange={handleInputChange} onSubmit={handleSubmit} />
             </div>
           </SignUpInputContainer>
-          {/* <div className="EmojiPickerDiv"> */}
-          {/* <EmojiPicker onEmojiSelect={handleEmojiSelect} /> */}
-          {/* </div> */}
+          <div className="EmojiPickerDiv">
+            <StyledDiv>
+              <EmojiPicker />
+            </StyledDiv>
+          </div>
           <SignUpTerms>
             <div className="checkbox">
-              <input type="checkbox" id="check-all-1" name="all" />
+              <input type="checkbox" id="check1" name="check1" onChange={handleChange} />
               <span className="InputTitle">가입을 동의합니다.</span>
             </div>
 
             <div className="checkbox">
-              <input type="checkbox" id="check-all-2" name="all" />
+              <input type="checkbox" id="check2" name="check2" onChange={handleChange} />
               <span className="InputTitle">클론 코딩 프로젝트에 오신걸 환영합니다!</span>
               <a
                 className="inputLink"
@@ -174,7 +190,7 @@ const SignUpPage = () => {
             </div>
           </SignUpTerms>
           <SignUpButton>
-            <Button size="xl" theme="SignUpBtn" type="submit">
+            <Button size="xl" theme="SignUpBtn" type="submit" disabled={!allChecked}>
               회원가입
             </Button>
           </SignUpButton>

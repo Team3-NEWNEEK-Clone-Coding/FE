@@ -7,8 +7,6 @@ export const NewsList = styled.ul`
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
-    /* @media screen and (max-width: 1360px) {
-    } */
     .border-top-style:nth-child(-n + 4) {
         border-top: 1px solid ${COLOR.black};
     }
@@ -30,7 +28,7 @@ export const NewsList = styled.ul`
     }
 `;
 
-export const NewsCardStyle = styled(Link)`
+export const NewsCardStyle = styled.li`
     width: 25%;
     border: 1px solid ${COLOR.black};
     border-top: none;

@@ -5,12 +5,13 @@ export const getAllNews = async (currentPage) => {
         const params = {
             page: currentPage,
             size: 12,
-            sortBy: 'newsDate',
+            sortBy: 'createdAt',
             isAsc: 'false',
         };
         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/news`, {
             params,
         });
+        // console.log(response.data);
         return response.data;
     } catch (error) {}
 };
@@ -22,7 +23,7 @@ export const getCategoryNews = async ({ currentPage, dependency }) => {
                 page: currentPage,
                 category: dependency,
                 size: 12,
-                sortBy: 'newsDate',
+                sortBy: 'createdAt',
                 isAsc: 'false',
             },
         });
@@ -39,7 +40,7 @@ export const searchNews = async ({ currentPage, dependency }) => {
                 keyword: dependency,
                 page: currentPage,
                 size: 12,
-                sortBy: 'newsDate',
+                sortBy: 'createdAt',
                 isAsc: 'false',
             },
         });

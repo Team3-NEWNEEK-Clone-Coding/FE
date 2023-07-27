@@ -18,7 +18,7 @@ export const HeaderBannerStyle = styled.div`
         margin-left: 60px;
         img {
             width: 100%;
-            /* height: 100%; */
+            height: auto;
         }
     }
     h1 {
@@ -85,6 +85,9 @@ export const NewsLetterForm = styled.form`
         margin-top: 32px;
         display: flex;
         gap: 8px;
+        button {
+            width: calc(50% - 8px);
+        }
     }
 `;
 
@@ -97,6 +100,9 @@ export const IntroContentBox = styled.div`
         padding: 0 5%;
         @media screen and (max-width: 900px) {
             width: 480px;
+        }
+        @media screen and (max-width: 500px) {
+            width: 100%;
         }
     }
     p {

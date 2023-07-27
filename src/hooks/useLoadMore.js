@@ -1,41 +1,40 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useQueryClient, useQuery } from 'react-query';
-
+import { useDispatch } from 'react-redux';
+import { subscriberSub } from '../redux/modules/subscriberSlice';
 const useLoadMore = (fetchFunction) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [data, setData] = useState(null);
     const [totalPage, setTotalPage] = useState(1);
-    const [isFetching, setIsFetching] = useState(false);
-
+    const [isFetching, setIsFetching] = useState(true);
+    const [newsData, setNewsData] = useState([]);
     const queryClient = useQueryClient();
+    const dispatch = useDispatch();
 
-    const getInitialData = useCallback(
-        (pageNum) => {
-            const allCachedData = [];
-            for (let pageIndex = 1; pageIndex <= pageNum; pageIndex++) {
-                const cachedData = queryClient.getQueryData(['data', pageIndex]);
-                if (cachedData) {
-                    const dataList = Array.isArray(cachedData.newsList) ? cachedData.newsList : [];
-                    allCachedData.push(...dataList);
-                }
+    const cachedData = useMemo(() => {
+        const allCachedData = [];
+        for (let pageIndex = 1; pageIndex <= currentPage; pageIndex++) {
+            const cachedData = queryClient.getQueryData(['data', pageIndex]);
+            if (cachedData) {
+                const dataList = Array.isArray(cachedData.newsList) ? cachedData.newsList : [];
+                allCachedData.push(...dataList);
             }
-            return allCachedData;
-        },
-        [queryClient]
-    );
+        }
+        return allCachedData;
+    }, [queryClient, currentPage]);
 
-    const cachedData = getInitialData(currentPage);
-    const { isLoading, isError, refetch } = useQuery(
+    const { data, isLoading, isError, refetch } = useQuery(
         ['data', currentPage],
         () => fetchFunction(currentPage),
         {
             initialData: cachedData,
             onSuccess: (response) => {
-                setData((prevData) =>
-                    prevData ? [...prevData, ...response.newsList] : response.newsList
-                );
+                if (currentPage === 1) {
+                    setNewsData(response.newsList);
+                } else {
+                    setNewsData([...cachedData, ...response.newsList]);
+                }
                 setTotalPage(response.totalPages);
-                setIsFetching(false);
+                dispatch(subscriberSub(response.subscriberCount));
             },
         }
     );
@@ -45,7 +44,7 @@ const useLoadMore = (fetchFunction) => {
     };
 
     return {
-        data,
+        data: newsData,
         currentPage,
         totalPage,
         isLoading,
@@ -55,39 +54,3 @@ const useLoadMore = (fetchFunction) => {
     };
 };
 export default useLoadMore;
-// import { useState, useEffect } from 'react';
-// // import { getAllNews } from '../api/news';
-
-// const useNewsData = (getData) => {
-//     const [currentPage, setCurrentPage] = useState(1);
-//     const [totalPage, setTotalPage] = useState(1);
-//     const [data, setData] = useState([]);
-//     // let totalPage = 10;
-//     const fetchData = async () => {
-//         try {
-//             const newData = await getData({ currentPage });
-//             setTotalPage(newData.totalPages);
-//             setData((prevData) => [...prevData, ...newData.newsList]);
-//         } catch (error) {
-//             alert('에러');
-//             // 오류 처리
-//         }
-//     };
-
-//     useEffect(() => {
-//         fetchData();
-//     }, [currentPage]);
-
-//     const moreViewOnClick = () => {
-//         if (currentPage < totalPage) {
-//             setCurrentPage(currentPage + 1);
-//             // console.log(currentPage);
-//         } else {
-//             setCurrentPage(totalPage);
-//         }
-//     };
-
-//     return { data, moreViewOnClick, currentPage, totalPage };
-// };
-
-// export default useNewsData;

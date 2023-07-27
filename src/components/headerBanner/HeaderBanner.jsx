@@ -3,7 +3,6 @@ import { HeaderBannerStyle, IntroContentBox, NewsLetterForm } from './HeaderBann
 import Input from '../common/input/Input';
 import CheckBoxInput from '../common/checkBoxInput/CheckBoxInput';
 import Button from '../common/button/Button';
-
 const HeaderBanner = ({
     onSubmitEvent,
     email,
@@ -18,11 +17,18 @@ const HeaderBanner = ({
     onChangeNickNameHandler,
     onChangeCheckBoxHandler,
     onChangeCheckBoxHandler2,
+    subscriber,
 }) => {
     return (
         <HeaderBannerStyle>
             <div className="img-wrap">
-                <img src={`${process.env.PUBLIC_URL}/imgs/gosum-home.png`} alt="" />
+                <img
+                    src={`${process.env.PUBLIC_URL}/imgs/gosum-home.png`}
+                    alt="header-banner-gosum"
+                    width="530"
+                    height="600"
+                    sizes="530px"
+                />
             </div>
             <h1>
                 <div className="intro-inner">
@@ -32,7 +38,8 @@ const HeaderBanner = ({
             <IntroContentBox>
                 <div className="intro-content-inner">
                     <p>
-                        ✨지금 <span className="font-bold">{`887,074`}명</span>이 뉴닉을 읽고 있어요
+                        ✨지금 <span className="font-bold">{subscriber}명</span>이 뉴닉을 읽고
+                        있어요
                     </p>
                     <p className="intro-text">
                         세상 돌아가는 소식, 알고는 싶지만 신문 볼 새 없이 바쁜 게 우리 탓은
@@ -85,7 +92,9 @@ const HeaderBanner = ({
                             <Button theme={'NewsLetterBtn'} type="submit">
                                 뉴스레터 무료로 구독하기
                             </Button>
-                            <Button theme={'MainAppDownloadBtn'}>앱 다운로드하기</Button>
+                            <Button theme={'MainAppDownloadBtn'}>
+                                <a href="https://app.newneek.co/">앱 다운로드하기</a>
+                            </Button>
                         </div>
                     </NewsLetterForm>
                 </div>

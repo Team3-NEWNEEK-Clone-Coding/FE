@@ -1,5 +1,5 @@
 // useFetchNews.js
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 // import { useQuery } from 'react-query';
 import { useQueryClient, useQuery } from 'react-query';
 
@@ -10,22 +10,17 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
     const [totalNewsCount, setTotalNewsCount] = useState(1);
     const queryClient = useQueryClient();
 
-    const getInitialData = useCallback(
-        (pageNum, category) => {
-            const allCachedData = [];
-            for (let pageIndex = 1; pageIndex <= pageNum; pageIndex++) {
-                const cachedData = queryClient.getQueryData([queryKey, pageIndex, category]);
-                if (cachedData) {
-                    const dataList = Array.isArray(cachedData.newsList) ? cachedData.newsList : [];
-                    allCachedData.push(...dataList);
-                }
+    const cachedData = useMemo(() => {
+        const allCachedData = [];
+        for (let pageIndex = 1; pageIndex <= currentPage; pageIndex++) {
+            const cachedData = queryClient.getQueryData([queryKey, pageIndex, dependency]);
+            if (cachedData) {
+                const dataList = Array.isArray(cachedData.newsList) ? cachedData.newsList : [];
+                allCachedData.push(...dataList);
             }
-            return allCachedData;
-        },
-        [queryClient]
-    );
-
-    const cachedData = getInitialData(currentPage, dependency);
+        }
+        return allCachedData;
+    }, [queryClient, currentPage]);
 
     const { isLoading, isError, refetch } = useQuery(
         [queryKey, currentPage, dependency], // dependency를 추가합니다.
@@ -33,9 +28,11 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
         {
             initialData: cachedData,
             onSuccess: (response) => {
-                setNewsData((prevData) =>
-                    prevData ? [...prevData, ...response.newsList] : response.newsList
-                );
+                if (currentPage === 1) {
+                    setNewsData(response.newsList);
+                } else {
+                    setNewsData([...cachedData, ...response.newsList]);
+                }
                 setTotalPage(response.totalPages);
                 setTotalNewsCount(response.totalNewsCount);
             },
@@ -55,3 +52,11 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
     return { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage, totalNewsCount };
 };
 export default useFetchNews;
+
+
+
+
+
+
+
+

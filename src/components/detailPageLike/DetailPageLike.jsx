@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
+import { postUpdateLike } from '../../api/newsDetail';
 import { PostFoot, PostFootReaction, PostShare } from './DetailPageLikeStyle';
 
-const DetailPageLike = ( { post, likeButtonHandler } ) => {
+const DetailPageLike = ({ post, id }) => {
+    const [isLiked, setIsLiked] = useState(post.isNewsHeart);
+
+    const queryClient = useQueryClient();
+    const mutation = useMutation(postUpdateLike, {
+        onSuccess: (data) => {
+            queryClient.setQueriesData(['post', id], (old) => ({
+                ...old,
+                heart: data.newsHeart,
+            }));
+
+            setIsLiked(data.isNewsHeart);
+        },
+    });
+
+    const likeButtonHandler = () => {
+        const token = localStorage.getItem("accessToken");
+        if(!token) {
+            alert("로그인 후 이용할 수 있어요!");
+            return;
+        }
+        mutation.mutate(id);
+    };
+
+    const likeButtonClass = isLiked ? 'liked' : 'unliked';
 
     const facebookShareHandler = () => {
         const url = `https://www.facebook.com/sharer/sharer.php?u=newneek.co`;
@@ -10,16 +36,17 @@ const DetailPageLike = ( { post, likeButtonHandler } ) => {
 
     const twitterShareHandelr = () => {
         const url = `https://twitter.com/share?url=${window.location.href}&text=${post.title}`;
-        window.open(url, 'newwindow', 'width=600, height=400');
-    }
+        window.open(url, "newwindow", "width=600, height=400");
+    };
 
     return (
         <PostFoot className="post-foot">
             <PostFootReaction className="post-foot-reaction">
                 <button className="post-foot-reaction-button " onClick={likeButtonHandler}>
                     <span role="img" aria-label="">🧡</span>
-                    좋았슴 
-                    <b className="post-foot-reaction-button-count">{post.heart}</b>
+                    <p className={likeButtonClass}>좋았슴
+                        <b className={`post-foot-reaction-button-count ${likeButtonClass}`}>{post.heart}</b>
+                    </p>
                 </button>
             </PostFootReaction>
             <PostShare className="post-share">
@@ -46,5 +73,4 @@ const DetailPageLike = ( { post, likeButtonHandler } ) => {
     )
 }
 
-export default DetailPageLike
-
+export default DetailPageLike;

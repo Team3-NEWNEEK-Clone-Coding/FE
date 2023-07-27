@@ -1,32 +1,22 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { getNewsDetail, postUpdateLike } from '../../api/newsDetail';
+import { useQuery } from 'react-query';
+import { getNewsDetail } from '../../api/newsDetail';
 import { PostHead, PostContainer, PostHashtag } from './DetailPageStyle';
 import LoadingPage from '../../components/loadingPage/LoadingPage';
 import ProgressBar from '../../components/progressBar/ProgressBar';
 import DetailPageLike from '../../components/detailPageLike/DetailPageLike';
 import DetailPageSubscribe from '../../components/detailPageSubscribe/DetailPageSubscribe';
 import HomeBanner from '../../components/homeBanner/HomeBanner';
+import useDelay from '../../hooks/useDelay';
 
 const DetailPage = () => {
     const { id } = useParams();
     const { data: post, isLoading, isError } = useQuery(['post', id], () => getNewsDetail(id));
 
-    const queryClient = useQueryClient();
-    const mutation = useMutation(postUpdateLike, {
-        onSuccess: (data) => {
-            queryClient.setQueriesData(['post', id], (old) => ({
-                ...old,
-                heart: data.heart,
-            }));
-        },
-    });
-    const likeButtonHandler = () => {
-        mutation.mutate(id);
-    }
+    const { isDelayOver } = useDelay();
 
-    if (isLoading) {
+    if (!isDelayOver || isLoading) {
         return <LoadingPage />;
     }
 
@@ -41,7 +31,9 @@ const DetailPage = () => {
             <div className="post-scrollwrap">
                 <PostHead className="post-head">
                     <ProgressBar title={post.title} />
-                    <a className="post-head-runninghead" href={`/tag/${post.category}`}>{post.category}</a>
+                    <a className="post-head-runninghead" href={`/tag/${post.category}`}>
+                        {post.category}
+                    </a>
                     <h2 className="post-head-headline">{post.title}</h2>
                     <time className="post-head-date">{post.date}</time>
                     <i className="icon-bullet"></i>
@@ -55,13 +47,15 @@ const DetailPage = () => {
             </div>
             <PostHashtag className="post-hashtag">
                 {tags.map((tag, index) => (
-                    <a key={index} className="post-hashtag-item" href={`/search/posts?keyword=${tag}`}>#{tag}</a>
+                    <a key={index} className="post-hashtag-item" href={`/search/${tag}`}>
+                        #{tag}
+                    </a>
                 ))}
             </PostHashtag>
-            <DetailPageLike post={post} likeButtonHandler={likeButtonHandler} />
+            <DetailPageLike post={post} id={id} />
             <DetailPageSubscribe />
             <HomeBanner />
-        </section >
+        </section>
     );
 };
 

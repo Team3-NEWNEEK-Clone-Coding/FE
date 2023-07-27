@@ -5,7 +5,6 @@ const NewsCategoryPage = () => {
     return (
         <>
             <ReadCategoryNewsContainer />
-            <HomeBanner />
         </>
     );
 };

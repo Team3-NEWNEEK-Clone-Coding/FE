@@ -67,9 +67,12 @@ const LoginPage = () => {
 
       // 로그인 성공한 경우 JWT 토큰을 localStorage에 저장
       if (response.status === 200) {
-        const token = response.data.token; // 서버에서 토큰을 어떤 필드로 보내는지에 따라 수정해야 할 수도 있습니다.
+        const token = response.headers.authorization; // 서버에서 토큰을 어떤 필드로 보내는지에 따라 수정해야 할 수도 있습니다.
+
+        console.log(response.data);
+
         localStorage.setItem("accessToken", token);
-        console.log("로그인 성공!");
+        alert("로그인 되었습니다.");
         navigate("/");
       }
     } catch (error) {
@@ -86,7 +89,7 @@ const LoginPage = () => {
               <img src={`${process.env.PUBLIC_URL}/imgs/new-neek-logo.png`} alt="뉴닉" />
             </a>
           </LoginHeader>
-          <LoginSocialDiv>
+          <LoginSocialDiv onClick={() => alert("없는 기능입니다.")}>
             <button className="SocialBtn">
               <span className="logo">
                 <img src={`${process.env.PUBLIC_URL}/imgs/logo-google.png`} alt="구글" />
@@ -100,7 +103,7 @@ const LoginPage = () => {
               <InputContainer fields={fields} onChange={handleInputChange} onSubmit={loginSubmit} />
             </div>
           </LoginInputContainer>
-          <div className="forgotPw">
+          <div className="forgotPw" onClick={() => alert("없는 기능입니다.")}>
             <Link to="#">비밀번호를 잊으셨나요?</Link>
           </div>
           <Button size="xl" theme="LoginBtn" type="submit">
