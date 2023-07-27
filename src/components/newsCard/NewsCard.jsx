@@ -21,6 +21,7 @@ const NewsCard = ({ newsData, $borderTop }) => {
                                     <img
                                         src={news.img}
                                         alt="news img"
+                                        sizes="(max-width: 700px) 630px,(max-width: 500px) 340px,339px"
                                         width="339"
                                         height="254"
                                         loading="lazy"
