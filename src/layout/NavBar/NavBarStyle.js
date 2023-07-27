@@ -39,10 +39,4 @@ export const CategoryList = styled.ul`
     @media screen and (max-width: 900px) {
         font-size: 0.9rem;
     }
-    @media screen and (max-width: 720px) {
-        font-size: 0.8rem;
-        li {
-            padding: 1.2rem 0;
-        }
-    }
 `;

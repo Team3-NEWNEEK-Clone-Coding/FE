@@ -7,51 +7,13 @@ import { PageTitle, ButtonBox, SearchContentWrap } from '../components/newsPage/
 import useFetchNews from '../hooks/useFetchNews';
 import SearchOptionList from '../components/SearchOptionList';
 import LoadingPage from '../pages/LoginPage/LoginPage';
-const mockDate = [
-    {
-        title: '우리가 알던 중국 경제가 아냐',
-        img: '/imgs/img1.jpeg',
-        category: '경제',
-        date: '2023.07.21',
-    },
-    {
-        title: '우리가 알던 중국 경제가 아냐',
-        img: '/imgs/img1.jpeg',
-        category: '경제',
-        date: '2023.07.21',
-    },
-    {
-        title: '우리가 알던 중국 경제가 아냐',
-        img: '/imgs/img1.jpeg',
-        category: '경제',
-        date: '2023.07.21',
-    },
-    {
-        title: '우리가 알던 중국 경제가 아냐',
-        img: '/imgs/img1.jpeg',
-        category: '경제',
-        date: '2023.07.21',
-    },
-    {
-        title: '우리가 알던 중국 경제가 아냐',
-        img: '/imgs/img1.jpeg',
-        category: '경제',
-        date: '2023.07.21',
-    },
-    {
-        title: '우리가 알던 중국 경제가 아냐',
-        img: '/imgs/img1.jpeg',
-        category: '경제',
-        date: '2023.07.21',
-    },
-];
 
 const CategoryReadContainer = () => {
     const { keyword } = useParams();
     const { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage, totalNewsCount } =
         useFetchNews('searchNews', searchNews, keyword);
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <div>...loading</div>;
     if (isError) return <div>Error fetching data</div>;
 
     return (
@@ -68,7 +30,7 @@ const CategoryReadContainer = () => {
                         {currentPage !== totalPage && (
                             <ButtonBox>
                                 <Button size="md" theme="moreBtn" onClickEvent={handleLoadMore}>
-                                    더보기
+                                    {!isLoading ? '더보기' : '로딩 중'}
                                 </Button>
                             </ButtonBox>
                         )}
@@ -87,4 +49,3 @@ const CategoryReadContainer = () => {
 };
 
 export default CategoryReadContainer;
-

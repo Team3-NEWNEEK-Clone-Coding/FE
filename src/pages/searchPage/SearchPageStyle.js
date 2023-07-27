@@ -7,6 +7,7 @@ export const SearchPageStyle = styled.div`
 `;
 export const InputBox = styled.div`
     position: relative;
+    margin-top: 20px;
 `;
 export const ButtonGoBack = styled.button`
     position: absolute;
