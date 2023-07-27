@@ -27,6 +27,7 @@ const HeaderBanner = ({
                     alt="header-banner-gosum"
                     width="530"
                     height="600"
+                    sizes="530px"
                 />
             </div>
             <h1>
@@ -91,7 +92,9 @@ const HeaderBanner = ({
                             <Button theme={'NewsLetterBtn'} type="submit">
                                 뉴스레터 무료로 구독하기
                             </Button>
-                            <Button theme={'MainAppDownloadBtn'}>앱 다운로드하기</Button>
+                            <Button theme={'MainAppDownloadBtn'}>
+                                <a href="https://app.newneek.co/">앱 다운로드하기</a>
+                            </Button>
                         </div>
                     </NewsLetterForm>
                 </div>
