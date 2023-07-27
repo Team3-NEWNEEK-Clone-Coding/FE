@@ -107,14 +107,17 @@ font-size: 100px;
 
 
 export const SignUpTerms = styled.div`
-    padding: 0 0 1rem;
-    margin-top: 20px;
+
+    margin-top: 40px;
     transform: translateY(-10px);
+
+  
 
 .checkboxDiv {
   display: block;
     padding: 0.5rem 0;
     position: relative;
+    
 
 }
 
@@ -128,7 +131,7 @@ export const SignUpTerms = styled.div`
 }
 
 .InputTitle {
-  margin: 0.5vh;
+  margin: 1vh;
   font-size: 15px;
 
 }
@@ -140,9 +143,10 @@ export const SignUpTerms = styled.div`
   font-weight: 600;
   color: #051619;
   position: absolute;
-  margin-top: 1vh;
+  margin-top: 5px;
   margin-left: 50px;
 }
+
 `;
 
 export const SignUpButton = styled.div`
@@ -172,6 +176,8 @@ export const SignUpButton = styled.div`
 
 a {
   text-align: center;
+
+  
 }
 `;
 
