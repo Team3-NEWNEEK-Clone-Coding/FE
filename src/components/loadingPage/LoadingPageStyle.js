@@ -14,6 +14,12 @@ export const LoadingImg = styled.div`
     justify-content: center;
     align-items: center;
     height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #E6E4DA;
+    z-index: 10000;
 
     img {
         animation: ${rotate} 5s linear infinite;

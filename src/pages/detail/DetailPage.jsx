@@ -8,12 +8,15 @@ import ProgressBar from '../../components/progressBar/ProgressBar';
 import DetailPageLike from '../../components/detailPageLike/DetailPageLike';
 import DetailPageSubscribe from '../../components/detailPageSubscribe/DetailPageSubscribe';
 import HomeBanner from '../../components/homeBanner/HomeBanner';
+import useDelay from '../../hooks/useDelay';
 
 const DetailPage = () => {
     const { id } = useParams();
     const { data: post, isLoading, isError } = useQuery(['post', id], () => getNewsDetail(id));
 
-    if (isLoading) {
+    const { isDelayOver } = useDelay();
+
+    if (!isDelayOver || isLoading) {
         return <LoadingPage />;
     }
 
