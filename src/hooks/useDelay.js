@@ -7,12 +7,12 @@ const useDelay = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsDelayOver(true);
-        }, 1000);
+        }, 700);
 
         return () => clearTimeout(timer);
     }, []);
 
-    return {isDelayOver}
+    return { isDelayOver }
 }
 
 export default useDelay;
