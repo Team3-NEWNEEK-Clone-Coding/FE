@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const StFooter = styled.footer`
     display: flex;
@@ -10,7 +10,7 @@ export const StFooter = styled.footer`
     border-top: 1px solid #051619;
     box-sizing: border-box;
     position: relative;
-    z-index: 4;  
+    z-index: 4;
 `;
 
 export const StFooterAddress = styled.div`
@@ -26,6 +26,7 @@ export const StFooterAddress = styled.div`
         img {
             vertical-align: middle;
             width: 100%;
+            height: auto;
         }
     }
 `;
@@ -54,12 +55,11 @@ export const StFooterSitemap = styled.nav`
     }
 `;
 
-
 export const StFooterAddressInfo = styled.div`
     width: 100%;
     margin: 2rem 0 0;
     line-height: 1.8;
-`
+`;
 
 export const StFooterCopyright = styled.small`
     display: block;
