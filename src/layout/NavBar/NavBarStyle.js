@@ -10,7 +10,7 @@ export const NavStyle = styled.nav`
     align-items: center;
     position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 10;
 `;
 
 export const CategoryList = styled.ul`
@@ -25,7 +25,6 @@ export const CategoryList = styled.ul`
             display: block;
             width: 100%;
             padding: 1.5rem 0;
-            /* height: 100%; */
             cursor: pointer;
         }
         &:hover {

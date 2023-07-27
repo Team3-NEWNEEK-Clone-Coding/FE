@@ -101,6 +101,9 @@ export const IntroContentBox = styled.div`
         @media screen and (max-width: 900px) {
             width: 480px;
         }
+        @media screen and (max-width: 500px) {
+            width: 100%;
+        }
     }
     p {
         max-width: 560px;
