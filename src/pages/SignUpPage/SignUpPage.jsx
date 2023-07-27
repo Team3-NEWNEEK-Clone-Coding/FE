@@ -20,8 +20,15 @@ const SignUpPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState(""); // 사용자가 선택한 이모지를 저장하는 상태
+  const [checkedItems, setCheckedItems] = useState({ check1: false, check2: false }); // Checkbox 상태를 추가합니다
 
   const navigate = useNavigate();
+
+  const handleChange = (event) => {
+    setCheckedItems({ ...checkedItems, [event.target.name]: event.target.checked });
+  };
+
+  const allChecked = Object.values(checkedItems).every((item) => item);
 
   const handleSelectChange = (e) => {
     setSelectedEmoji(e.target.value);
@@ -116,7 +123,7 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email === "" || password === "" || confirmPassword === "" || nickname === "") {
-      alert("모든 필드를 채워주세요!");
+      alert("이메일, 비밀번호, 닉네임을 입력해주세요!");
       return;
     }
 
@@ -165,12 +172,12 @@ const SignUpPage = () => {
           </div>
           <SignUpTerms>
             <div className="checkbox">
-              <input type="checkbox" id="check-all-1" name="all" />
+              <input type="checkbox" id="check1" name="check1" onChange={handleChange} />
               <span className="InputTitle">가입을 동의합니다.</span>
             </div>
 
             <div className="checkbox">
-              <input type="checkbox" id="check-all-2" name="all" />
+              <input type="checkbox" id="check2" name="check2" onChange={handleChange} />
               <span className="InputTitle">클론 코딩 프로젝트에 오신걸 환영합니다!</span>
               <a
                 className="inputLink"
@@ -183,7 +190,7 @@ const SignUpPage = () => {
             </div>
           </SignUpTerms>
           <SignUpButton>
-            <Button size="xl" theme="SignUpBtn" type="submit">
+            <Button size="xl" theme="SignUpBtn" type="submit" disabled={!allChecked}>
               회원가입
             </Button>
           </SignUpButton>

@@ -89,7 +89,7 @@ const LoginPage = () => {
               <img src={`${process.env.PUBLIC_URL}/imgs/new-neek-logo.png`} alt="뉴닉" />
             </a>
           </LoginHeader>
-          <LoginSocialDiv>
+          <LoginSocialDiv onClick={() => alert("없는 기능입니다.")}>
             <button className="SocialBtn">
               <span className="logo">
                 <img src={`${process.env.PUBLIC_URL}/imgs/logo-google.png`} alt="구글" />
@@ -103,7 +103,7 @@ const LoginPage = () => {
               <InputContainer fields={fields} onChange={handleInputChange} onSubmit={loginSubmit} />
             </div>
           </LoginInputContainer>
-          <div className="forgotPw">
+          <div className="forgotPw" onClick={() => alert("없는 기능입니다.")}>
             <Link to="#">비밀번호를 잊으셨나요?</Link>
           </div>
           <Button size="xl" theme="LoginBtn" type="submit">

@@ -67,6 +67,10 @@ export const ButtonStyle = styled.button`
         return css`
         background-color: ${props.isHovered ? '#fff' : '#051619'};
         color: ${props.isHovered ? '#051619' : '#fff'};
+        &:hover{
+          background-color: #fff;
+          color: #051619;
+        }
     
 `;
 
@@ -74,6 +78,10 @@ export const ButtonStyle = styled.button`
         return css`
         background-color: ${props.isHovered ? '#051619' : '#fff'};
         color: ${props.isHovered ? '#fff' : '#051619'};
+        &:hover{
+          background-color: #051619;
+          color: #fff;
+        }
 
 `;
 
@@ -82,18 +90,30 @@ export const ButtonStyle = styled.button`
         background-color: ${props.isClicked ? '#fff' : '#051619'};
         color: ${props.isClicked ? '#051619' : '#fff'};
         text-align: center;
+        &:hover{
+          background-color: #fff;
+          color: #051619;
+        }
 `;
 
       case "LoginBtn":
         return css`
         background-color: ${props.isHovered ? '#fff' : '#051619'};
         color: ${props.isHovered ? '#051619' : '#fff'};
+        &:hover{
+          background-color: #fff;
+          color: #051619;
+        }
 
 `;
       case "DetailPageNewsBtn":
         return css`
           background-color: ${props.isHovered ? '#CC3300' : '#ff6b00'};
           color: ${props.isClicked ? '#fff' : '#fff'};
+          &:hover{
+            background-color: #CC3300;
+            color: #fff;
+          }
  
         `;
 
