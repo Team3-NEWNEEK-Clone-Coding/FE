@@ -10,7 +10,7 @@
 ### 배포
 
 📎[서비스 링크](https://fe-newneek.vercel.app/)
-
+🎬[시연 영상](https://www.youtube.com/watch?v=jdSk7j4KiFE&feature=youtu.be)
 ---
 ### 기획 / 설계
 
