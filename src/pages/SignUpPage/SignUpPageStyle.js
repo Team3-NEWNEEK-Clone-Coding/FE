@@ -108,7 +108,7 @@ font-size: 100px;
 
 export const SignUpTerms = styled.div`
 
-    margin-top: 40px;
+    margin-top: 20px;
     transform: translateY(-10px);
 
   
@@ -147,11 +147,16 @@ export const SignUpTerms = styled.div`
   margin-left: 50px;
 }
 
+.checkbox {
+  padding-top: 10px;
+}
+
+
 `;
 
 export const SignUpButton = styled.div`
 
-    padding: 20px 0;
+    padding: 10px 0;
     margin: auto;
   
 .signUp-button {
