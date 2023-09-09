@@ -27,6 +27,7 @@ const useLoadMore = (fetchFunction) => {
         () => fetchFunction(currentPage),
         {
             initialData: cachedData,
+            refetchOnWindowFocus: false,
             onSuccess: (response) => {
                 if (currentPage === 1) {
                     setNewsData(response.newsList);
