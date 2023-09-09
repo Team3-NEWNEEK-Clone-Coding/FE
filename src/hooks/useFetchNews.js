@@ -27,6 +27,7 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
         () => fetchFunction({ currentPage, dependency }),
         {
             initialData: cachedData,
+            refetchOnWindowFocus: false,
             onSuccess: (response) => {
                 if (currentPage === 1) {
                     setNewsData(response.newsList);
@@ -52,11 +53,3 @@ const useFetchNews = (queryKey, fetchFunction, dependency) => {
     return { newsData, isLoading, isError, handleLoadMore, totalPage, currentPage, totalNewsCount };
 };
 export default useFetchNews;
-
-
-
-
-
-
-
-
